@@ -18,7 +18,7 @@ namespace Prueba_Ismarlin_Proyecto.UI.Consultas
     /// Lógica de interacción para cEmpleados.xaml
     /// </summary>
     public partial class cEmpleados : Window
-    {
+    { 
         public cEmpleados()
         {
             InitializeComponent();
