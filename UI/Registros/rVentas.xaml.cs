@@ -15,7 +15,7 @@ using Prueba_Ismarlin_Proyecto.Entidades;
 using Prueba_Ismarlin_Proyecto.UI.Consultas;
 
 namespace Prueba_Ismarlin_Proyecto.UI.Registros
-{
+{ 
     /// <summary>
     /// Lógica de interacción para rVentas.xaml
     /// </summary>

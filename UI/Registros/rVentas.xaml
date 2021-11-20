@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prueba_Ismarlin_Proyecto.UI.Registros"
-        mc:Ignorable="d"
+        mc:Ignorable="d" 
         Title="Formulario de Ventas" Height="700" Width="900">
     <Grid Background="White">
         <StackPanel Orientation="Vertical" Margin="0,0,0,0">
