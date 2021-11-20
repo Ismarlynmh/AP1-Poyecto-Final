@@ -1,0 +1,63 @@
+﻿<Window x:Class="Prueba_Ismarlin_Proyecto.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prueba_Ismarlin_Proyecto"
+        mc:Ignorable="d"
+       Title="Principal" Height="350" Width="490" WindowStartupLocation="CenterScreen">
+    <Grid >
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="170"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="30"/>
+
+            <RowDefinition Height="0"/>
+
+            <RowDefinition Height="30"/>
+
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="0"/>
+
+            <RowDefinition Height="30"/>
+
+            <RowDefinition Height="30"/>
+
+        </Grid.RowDefinitions>
+
+
+        <Image  Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Height="95" Width="300" Source="/Resources/Copia de  Logo.jpg" Margin="0,-30,0,10" />
+
+
+        <Label Content="Registros" HorizontalAlignment="Center" Grid.Row="2" FontSize="16" FontWeight="Bold"/>
+
+        <Button x:Name="UsuarioButton" Content="Usuarios" FontSize="16" Grid.Row="4" Grid.Column="0"  Background="White" Click="UsuarioButton_Click"/>
+        <Button x:Name="EmpleadosButton" Content="Empleados" FontSize="16" Grid.Row="8" Grid.Column="0"  Background="White" Click="EmpleadosButton_Click"/>
+        <Button x:Name="SuplidoresrButton" Content="Suplidores" FontSize="16" Grid.Row="10" Grid.Column="0"  Background="White" Click="SuplidoresrButton_Click" />
+        <Button x:Name="ProductosButton" Content="Productos" FontSize="16" Grid.Row="13" Grid.Column="0"  Background="White" Click="ProductosButton_Click"/>
+        <Button x:Name="ComprasButton" Content="Compras" FontSize="16" Grid.Row="14" Grid.Column="0"  Background="White" Click="ComprasButton_Click" />
+        <Button x:Name="VentasButton" Content="Ventas" FontSize="16" Grid.Row="14" Grid.Column="0"  Background="White" Click="VentasButton_Click" />
+
+        <Label Content="Consultas" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="2" FontSize="16" FontWeight="Bold"/>
+        <Button x:Name="ConsultarUsuarioButton"  Content="Consultas Usuarios" FontSize="16"  Grid.Row="4" Grid.Column="2"  Background="White" Click="ConsultarUsuarioButton_Click" />
+        <Button x:Name="ConsultarEmpleadosButton"  Content="Consultas Empleados" FontSize="16" Grid.Row="8" Grid.Column="2" Background="White" Click="ConsultarEmpleadosButton_Click" />
+        <Button x:Name="ConsultarSuplidoresrButton" Content="Consultas Suplidores" FontSize="16" Grid.Row="10" Grid.Column="2" Background="White" Click="ConsultarSuplidoresrButton_Click"/>
+        <Button x:Name="ConsultarProductosButton"  Content="Consultas Productos" FontSize="16" Grid.Row="13" Grid.Column="2"  Background="White" Click="ConsultarProductosButton_Click" />
+        <Button x:Name="ConsultarComprasButton"  Content="Consultas Compras" FontSize="16" Grid.Row="14" Grid.Column="2" Background="White" Click="ConsultarComprasButton_Click"  />
+        <Button x:Name="ConsultarVentasButton"  Content="Consultas Ventas" FontSize="16" Grid.Row="14" Grid.Column="2" Background="White" Click="ConsultarVentasButton_Click"  />
+        <Button x:Name="CerrarSecion"  Content=" Cerrar Sesión" FontSize="16" Grid.Row="14" Grid.Column="1" Background="LightGoldenrodYellow" Click="CerrarSecion_Click"  />
+        <TextBox x:Name="UsuarioActivoTextBox" Grid.Column="2" Margin="0,1,0,62" IsReadOnly="True" Foreground="SaddleBrown" BorderBrush="Red"></TextBox>
+    </Grid>
+</Window>
