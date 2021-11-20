@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Prueba_Ismarlin_Proyecto.UI.Registros
-{
+{ 
     /// <summary>
     /// Lógica de interacción para rEmpleados.xaml
     /// </summary>
