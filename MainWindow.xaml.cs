@@ -17,7 +17,7 @@ using Prueba_Ismarlin_Proyecto.UI.Consultas;
 using Prueba_Ismarlin_Proyecto.UI.Registros;
 
 namespace Prueba_Ismarlin_Proyecto
-{
+{ 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
