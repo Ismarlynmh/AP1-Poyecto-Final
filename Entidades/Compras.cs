@@ -14,7 +14,7 @@ namespace Prueba_Ismarlin_Proyecto.Entidades
         public int CompraId { get; set; }
         public int SuplidorId { get; set; }
         public DateTime FechaDeCompra { get; set; }
-        
+        public decimal SubTotal { get; set; }
         public double ITBIS { get; set; }
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }
@@ -30,7 +30,7 @@ namespace Prueba_Ismarlin_Proyecto.Entidades
             CompraId = 0;
             SuplidorId = 0;
             FechaDeCompra = DateTime.Now;
-            
+            SubTotal = 0;
             ITBIS = 0;
             Descuento = 0;
             Total = 0;

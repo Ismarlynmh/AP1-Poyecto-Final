@@ -15,6 +15,7 @@ namespace Prueba_Ismarlin_Proyecto.Entidades
         public int ClienteId { get; set; }
         public int EmpleadoId { get; set; }
         public DateTime FechaVenta { get; set; }
+        public decimal SubTotal { get; set; }
         public double ITBIS { get; set; }
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }
@@ -32,6 +33,7 @@ namespace Prueba_Ismarlin_Proyecto.Entidades
             ClienteId = 0;
             EmpleadoId = 0;
             FechaVenta = DateTime.Now;
+            SubTotal = 0;
             ITBIS = 0;
             Descuento = 0;
             Total = 0;

@@ -13,18 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Prueba_Ismarlin_Proyecto.UI.Registros
-{ 
+{
     /// <summary>
-    /// Lógica de interacción para rEmpleados.xaml
+    /// Lógica de interacción para rUsuarios.xaml
     /// </summary>
-    public partial class rEmpleados : Window
+    public partial class rUsuarios : Window
     {
-        public rEmpleados()
+        public rUsuarios()
         {
             InitializeComponent();
         }
 
-        private void NuevoButtton_Click(object sender, RoutedEventArgs e)
+        private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -34,12 +34,12 @@ namespace Prueba_Ismarlin_Proyecto.UI.Registros
 
         }
 
-        private void EmpleadoIdButton_Click(object sender, RoutedEventArgs e)
+        private void NuevoButtton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void EliminarButton_Click(object sender, RoutedEventArgs e)
+        private void EmpleadoIdButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

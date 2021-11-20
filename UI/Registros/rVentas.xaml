@@ -137,6 +137,12 @@
 
                 </StackPanel>
 
+                <!--SubTotal-->
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="SubTotal: " Margin="0,0,5,0" FontSize="13" />
+                    <TextBox x:Name="SubTotalTextBox" Height="20" Width="150" IsReadOnly="True" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="-5,3,5,0"  BorderBrush="Black" TextChanged="SubTotalTextBox_TextChanged" />
+                </StackPanel>
+
                 <!--Total-->
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Total: " Margin="0,0,5,0" FontSize="13" />

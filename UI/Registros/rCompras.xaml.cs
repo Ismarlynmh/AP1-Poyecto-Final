@@ -58,5 +58,10 @@ namespace Prueba_Ismarlin_Proyecto.UI.Registros
         {
 
         }
+
+        private void SubTotalTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
