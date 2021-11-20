@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Prueba_Ismarlin_Proyecto.Entidades
 {
     public class ComprasDetalle
-    {
+    { 
         [Key]
         public int Id { get; set; }
         public int ProductoId { get; set; }

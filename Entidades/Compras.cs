@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Prueba_Ismarlin_Proyecto.Entidades
 {
     public class Compras
-    {
+    { 
         [Key]
         public int CompraId { get; set; }
         public int SuplidorId { get; set; }
