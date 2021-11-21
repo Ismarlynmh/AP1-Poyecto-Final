@@ -16,6 +16,9 @@ namespace Prueba_Ismarlin_Proyecto.DAL
         public DbSet<Empleados> Empleados { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Ventas> Ventas { get; set; }
+        public DbSet<Suplidores> Suplidores { get; set; }
+        public DbSet<Productos> Productos { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"Data source = Data/Mendoza");
