@@ -21,7 +21,7 @@ namespace Prueba_Ismarlin_Proyecto.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data source = Data/Mendoza");
+            optionsBuilder.UseSqlite(@"Data source = Data/MendozaCreation");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
