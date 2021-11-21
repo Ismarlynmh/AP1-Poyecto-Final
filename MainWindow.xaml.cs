@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Prueba_Ismarlin_Proyecto.Entidades;
 using Prueba_Ismarlin_Proyecto.UI.Consultas;
 using Prueba_Ismarlin_Proyecto.UI.Registros;
+using Prueba_Ismarlin_Proyecto.BLL;
+
 
 namespace Prueba_Ismarlin_Proyecto
 { 
@@ -23,9 +25,15 @@ namespace Prueba_Ismarlin_Proyecto
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public static int usuarioSiempreActivoId;
+        Usuarios usuario = new Usuarios();
+        public MainWindow(int UsuarioId)
         {
             InitializeComponent();
+            usuarioSiempreActivoId = UsuarioId;
+            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
+            UsuarioActivoTextBox.Text = ("Usuario activo: " + usuario.NombreUsuario.ToString() + "\nID Usuario activo: " + usuario.UsuarioId.ToString());
+
         }
 
         private void UsuarioButton_Click(object sender, RoutedEventArgs e)
