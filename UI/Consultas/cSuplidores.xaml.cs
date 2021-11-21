@@ -11,90 +11,100 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Prueba_Ismarlin_Proyecto.Entidades;
 using Prueba_Ismarlin_Proyecto.BLL;
-
+using Prueba_Ismarlin_Proyecto.Entidades;
 
 namespace Prueba_Ismarlin_Proyecto.UI.Consultas
 {
     /// <summary>
-    /// Interaction logic for cProductos.xaml
+    /// Interaction logic for cSuplidores.xaml
     /// </summary>
-    public partial class cProductos : Window
+    public partial class cSuplidores : Window
     {
         public static int usuarioSiempreActivoId;
         Usuarios usuario = new Usuarios();
-        public cProductos(int usuarioId)
+        public cSuplidores(int usuarioId)
         {
             InitializeComponent();
             usuarioSiempreActivoId = usuarioId;
             usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
             UserActive.Text = ("Usuario activo: " + usuario.NombreUsuario.ToString() + "\nID Usuario activo: " + usuario.UsuarioId.ToString());
 
-
         }
 
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
-            var listado = new List<Productos>();
+            var listado = new List<Suplidores>();
             if (CriterioTextBox.Text.Trim().Length > 0)
             {
                 switch (FiltrarComboBox.SelectedIndex)
                 {
                     case 0:
-                        listado = ProductosBLL.GetList(x => true);
+                        listado = SuplidoresBLL.GetList(x => true);
                         break;
 
                     case 1:
                         int id;
                         id = int.Parse(CriterioTextBox.Text);
-                        listado = ProductosBLL.GetList(x => x.ProductoId == id);
+                        listado = SuplidoresBLL.GetList(x => x.SuplidorId == id);
                         break;
 
                     case 2:
-                        listado = ProductosBLL.GetList(x => x.NombreProducto == CriterioTextBox.Text);
+                        listado = SuplidoresBLL.GetList(x => x.NombreSuplidor == CriterioTextBox.Text);
                         break;
 
                     case 3:
-                        listado = ProductosBLL.GetList(x => x.MarcaProducto == CriterioTextBox.Text);
+                        listado = SuplidoresBLL.GetList(x => x.Apellidos == CriterioTextBox.Text);
                         break;
 
                     case 4:
-                        DateTime fecha = Convert.ToDateTime(CriterioTextBox.Text);
-                        listado = ProductosBLL.GetList(x => x.FechaIngreso.Date >= fecha.Date && x.FechaIngreso.Date <= fecha.Date);
+                        listado = SuplidoresBLL.GetList(x => x.NombreCompania == CriterioTextBox.Text);
                         break;
 
                     case 5:
-                        int idC;
-                        idC = int.Parse(CriterioTextBox.Text);
-                        listado = ProductosBLL.GetList(x => x.CategoriaId == idC);
+                        listado = SuplidoresBLL.GetList(x => x.Direccion == CriterioTextBox.Text);
                         break;
 
                     case 6:
-                        int idS;
-                        idS = int.Parse(CriterioTextBox.Text);
-                        listado = ProductosBLL.GetList(x => x.SuplidorId == idS);
+                        listado = SuplidoresBLL.GetList(x => x.Telefono == CriterioTextBox.Text);
                         break;
 
                     case 7:
+                        listado = SuplidoresBLL.GetList(x => x.Celular == CriterioTextBox.Text);
+                        break;
+
+                    case 8:
+                        listado = SuplidoresBLL.GetList(x => x.Ciudad == CriterioTextBox.Text);
+                        break;
+
+                    case 9:
+                        listado = SuplidoresBLL.GetList(x => x.Email == CriterioTextBox.Text);
+                        break;
+
+                    case 10:
+                        DateTime fecha = Convert.ToDateTime(CriterioTextBox.Text);
+                        listado = SuplidoresBLL.GetList(x => x.FechaIngreso.Date >= fecha.Date && x.FechaIngreso.Date <= fecha.Date);
+                        break;
+
+                    case 11:
                         int idU;
                         idU = int.Parse(CriterioTextBox.Text);
-                        listado = ProductosBLL.GetList(x => x.UsuariosId == idU);
+                        listado = SuplidoresBLL.GetList(x => x.UsuariosId == idU);
                         break;
+
                 }
             }
-            else if (FiltrarComboBox.SelectedIndex == 4)
+            else if (FiltrarComboBox.SelectedIndex == 10)
             {
-                listado = ProductosBLL.GetList(x => x.FechaIngreso.Date >= DesdeDateTimePicker.SelectedDate && x.FechaIngreso.Date <= HastaDateTimePicker.SelectedDate);
+                listado = SuplidoresBLL.GetList(x => x.FechaIngreso.Date >= DesdeDateTimePicker.SelectedDate && x.FechaIngreso.Date <= HastaDateTimePicker.SelectedDate);
             }
             else
             {
-                listado = ProductosBLL.GetList(p => true);
+                listado = SuplidoresBLL.GetList(p => true);
             }
             ConsultarDataGrid.ItemsSource = null;
             ConsultarDataGrid.ItemsSource = listado;
         }
-
     }
 }
 
