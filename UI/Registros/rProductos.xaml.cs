@@ -24,8 +24,7 @@ namespace Prueba_Ismarlin_Proyecto.UI.Registros
     {
         Productos producto = new Productos();
         List<Suplidores> lista = new List<Suplidores>();
-    ;
-
+   
         public static int usuarioSiempreActivoId;
         Usuarios usuario = new Usuarios();
         public rProductos(int usuarioId)
@@ -185,18 +184,6 @@ namespace Prueba_Ismarlin_Proyecto.UI.Registros
 
                 if (!Validar())
                     return;
-
-                if (!ValidarSuplidorId(Convert.ToInt32(SuplidorIdTextBox.Text)))
-                {
-                    MessageBox.Show("Suplidor Id no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
-
-                if (!ValidarCategoriaId(Convert.ToInt32(CategoriaIdTextBox.Text)))
-                {
-                    MessageBox.Show("Categoria Id no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
 
                 if (String.IsNullOrEmpty(ProductoIdTextBox.Text) || ProductoIdTextBox.Text == "0")
                     paso = ProductosBLL.Guardar(producto);
