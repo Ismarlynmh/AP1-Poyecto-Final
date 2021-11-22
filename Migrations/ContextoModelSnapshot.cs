@@ -167,6 +167,29 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("Productos");
                 });
 
+            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Roles", b =>
+                {
+                    b.Property<int>("RolId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EsActivo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RolId");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Suplidores", b =>
                 {
                     b.Property<int>("SuplidorId")
@@ -264,7 +287,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                             Contrasena = "Admin",
                             Direccion = "SFM",
                             Email = "admin123@gmail.com",
-                            FechaIngreso = new DateTime(2021, 11, 21, 17, 46, 48, 329, DateTimeKind.Local).AddTicks(6391),
+                            FechaIngreso = new DateTime(2021, 11, 22, 2, 15, 1, 152, DateTimeKind.Local).AddTicks(2433),
                             NombreUsuario = "Admin",
                             Nombres = "Admin",
                             Sexo = "Femenino",

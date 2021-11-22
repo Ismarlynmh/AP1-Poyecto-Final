@@ -95,6 +95,10 @@ namespace Prueba_Ismarlin_Proyecto.UI.Consultas
             ConsultarDataGrid.ItemsSource = listado;
         }
 
+        private void ConsultarDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
 
