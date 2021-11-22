@@ -18,6 +18,7 @@ using Prueba_Ismarlin_Proyecto.UI.Registros;
 using Prueba_Ismarlin_Proyecto.BLL;
 
 
+
 namespace Prueba_Ismarlin_Proyecto
 { 
     /// <summary>
@@ -49,12 +50,14 @@ namespace Prueba_Ismarlin_Proyecto
 
         private void SuplidoresrButton_Click(object sender, RoutedEventArgs e)
         {
-
+            rSuplidores rSuplidores = new rSuplidores();
+            rSuplidores.Show();
         }
 
         private void ProductosButton_Click(object sender, RoutedEventArgs e)
         {
-
+            rProductos rProductos = new rProductos(usuarioSiempreActivoId);
+            rProductos.Show();
         }
 
         private void ComprasButton_Click(object sender, RoutedEventArgs e)
@@ -71,6 +74,8 @@ namespace Prueba_Ismarlin_Proyecto
 
         private void ConsultarUsuarioButton_Click(object sender, RoutedEventArgs e)
         {
+            cUsuarios cUsuarios = new cUsuarios(usuarioSiempreActivoId);
+            cUsuarios.Show();
 
         }
 
@@ -82,12 +87,14 @@ namespace Prueba_Ismarlin_Proyecto
 
         private void ConsultarSuplidoresrButton_Click(object sender, RoutedEventArgs e)
         {
-
+            cSuplidores cSuplidores = new cSuplidores(usuarioSiempreActivoId);
+            cSuplidores.Show();
         }
 
         private void ConsultarProductosButton_Click(object sender, RoutedEventArgs e)
         {
-
+            cProductos cProductos = new cProductos(usuarioSiempreActivoId);
+            cProductos.Show();
         }
 
         private void ConsultarComprasButton_Click(object sender, RoutedEventArgs e)
@@ -97,11 +104,7 @@ namespace Prueba_Ismarlin_Proyecto
 
         }
 
-        private void CerrarSecion_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+      
         private void ConsultarVentasButton_Click(object sender, RoutedEventArgs e)
         {
             cVentas cVentas = new cVentas();
@@ -112,6 +115,15 @@ namespace Prueba_Ismarlin_Proyecto
         {
             rRoles rRoles = new rRoles();
             rRoles.Show();
+        }
+
+        private void CerrarSecion_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            LogIn logIn = new LogIn();
+            this.Close();
+            logIn.Show();*/
+
         }
     }
 }
