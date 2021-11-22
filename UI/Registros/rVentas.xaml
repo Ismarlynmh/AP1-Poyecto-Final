@@ -21,23 +21,10 @@
                 </Button>
             </StackPanel>
 
-            <!---Cliente Id-->
-            <StackPanel Orientation="Vertical">
-                <Label Content="Cliente Id" FontSize="13" />
-                <TextBox Height="20" x:Name="ClienteIdTextBox" TextWrapping="Wrap" Width="100" HorizontalAlignment="Left" Margin="5,0" BorderBrush="Black" Text="{Binding ClienteId}"/>
-            </StackPanel>
-
-            <!---Empleado Id-->
-            <StackPanel Orientation="Vertical">
-                <Label Content="Empleado Id" FontSize="13" />
-                <TextBox Height="20" x:Name="EmpleadoIdTextBox" TextWrapping="Wrap" Width="100" HorizontalAlignment="Left" Margin="5,0" BorderBrush="Black" Text="{Binding EmpleadoId}"/>
-            </StackPanel>
-
-
             <!---Fecha-->
             <StackPanel Orientation="Vertical" Width="900" Height="58">
                 <Label Content="Fecha Venta" FontStyle="Oblique" FontFamily="Cursive"  FontSize="13"/>
-                <DatePicker x:Name="FechaDatePicker" Width="265" HorizontalAlignment="Left" Margin="0,0" SelectedDate="{Binding Fecha}"/>
+                <DatePicker x:Name="FechaVentaDateTimePicker" Width="265" HorizontalAlignment="Left" Margin="0,0" SelectedDate="{Binding Fecha}"/>
             </StackPanel>
 
             <!---ITBIS-->
@@ -57,7 +44,7 @@
                 <StackPanel>
                     <StackPanel Height="43" Orientation="Horizontal" Width="800">
                         <StackPanel Height="53" Width="136" Orientation="Vertical">
-                            <Label Content="Producto Id" FontSize="12" Padding="-1" Margin="0,0,0,0"/>
+                            <Label Content="ProductoId" FontSize="12" Padding="-1" Margin="0,0,0,0"/>
                             <TextBox x:Name="ProductoIdTextBox" FontSize="20" Padding="-1" Margin="0,0,0,0"/>
                         </StackPanel>
 
@@ -85,7 +72,7 @@
 
                     </StackPanel>
 
-                    <DataGrid x:Name="ComprasDataGrid" Height="165" AutoGenerateColumns="False" Margin="0,5,0,0" ItemsSource="{Binding Detalle}" IsReadOnly="True">
+                    <DataGrid x:Name="VentasDataGrid" Height="165" AutoGenerateColumns="False" Margin="0,5,0,0" ItemsSource="{Binding Detalle}" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="IdDataGridTextColum" Header="Id" Width="1*" Binding="{Binding Id}"/>
                             <DataGridTextColumn x:Name="ProductoIdDataGridTextColum" Header="Producto Id" Width="2*" Binding="{Binding ProductoId}"/>
