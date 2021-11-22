@@ -34,6 +34,8 @@
             <RowDefinition Height="30"/>
 
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
 
         </Grid.RowDefinitions>
 
@@ -49,6 +51,7 @@
         <Button x:Name="ProductosButton" Content="Productos" FontSize="16" Grid.Row="13" Grid.Column="0"  Background="White" Click="ProductosButton_Click"/>
         <Button x:Name="ComprasButton" Content="Compras" FontSize="16" Grid.Row="14" Grid.Column="0"  Background="White" Click="ComprasButton_Click" />
         <Button x:Name="VentasButton" Content="Ventas" FontSize="16" Grid.Row="14" Grid.Column="0"  Background="White" Click="VentasButton_Click" />
+        <Button x:Name="RolesButton" Content="Roles" FontSize="16" Grid.Row="15" Grid.Column="0"  Background="White" Click="RolesButton_Click" />
 
         <Label Content="Consultas" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="2" FontSize="16" FontWeight="Bold"/>
         <Button x:Name="ConsultarUsuarioButton"  Content="Consultas Usuarios" FontSize="16"  Grid.Row="4" Grid.Column="2"  Background="White" Click="ConsultarUsuarioButton_Click" />
@@ -57,7 +60,7 @@
         <Button x:Name="ConsultarProductosButton"  Content="Consultas Productos" FontSize="16" Grid.Row="13" Grid.Column="2"  Background="White" Click="ConsultarProductosButton_Click" />
         <Button x:Name="ConsultarComprasButton"  Content="Consultas Compras" FontSize="16" Grid.Row="14" Grid.Column="2" Background="White" Click="ConsultarComprasButton_Click"  />
         <Button x:Name="ConsultarVentasButton"  Content="Consultas Ventas" FontSize="16" Grid.Row="14" Grid.Column="2" Background="White" Click="ConsultarVentasButton_Click"  />
-        <Button x:Name="CerrarSecion"  Content=" Cerrar Sesión" FontSize="16" Grid.Row="14" Grid.Column="1" Background="LightGoldenrodYellow" Click="CerrarSecion_Click"  />
+        <Button x:Name="CerrarSecion"  Content=" Cerrar Sesión" FontSize="16" Grid.Row="15" Grid.Column="1" Background="LightGoldenrodYellow" Click="CerrarSecion_Click"  />
         <TextBox x:Name="UsuarioActivoTextBox" Grid.Column="2" Margin="0,1,0,62" IsReadOnly="True" Foreground="SaddleBrown" BorderBrush="Red"></TextBox>
     </Grid>
 </Window>

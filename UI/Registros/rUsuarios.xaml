@@ -35,7 +35,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment ="Left" Grid.Row="0" Grid.Column="2" Width="80">
-            <Button x:Name="UsuarioIdButton" Height="30" Width="80" Background="White" Click="EmpleadoIdButton_Click" >
+            <Button x:Name="BuscarButton" Height="30" Width="80" Background="White" Click="BuscarButton_Click" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Resources/buscar (1).png" />
                     <Label Content="Buscar"/>
@@ -47,8 +47,8 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5">
             <TextBox x:Name="UsuarioIdTextBox" Margin="0,0"/>
-            <TextBox x:Name="NombreTextBox" Margin="0,7"/>
-            <TextBox x:Name="ApellidoTextBox" Margin="0,0"/>
+            <TextBox x:Name="NombresTextBox" Margin="0,7"/>
+            <TextBox x:Name="ApellidosTextBox" Margin="0,0"/>
             <TextBox x:Name="CedulaTextBox" Margin="0,7"/>
             <ComboBox Name="SexoComboBox" Height="18" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top">
                 <ComboBoxItem Content="Femenino"/>
@@ -62,9 +62,9 @@
                 <ComboBoxItem Content="Administrador"/>
                 <ComboBoxItem Content="Empleado"/>
             </ComboBox>
-            <DatePicker x:Name="FechaIngresoDatePicker" Margin="0,4" />
+            <DatePicker x:Name="FechaIngresoDateTimePicker" Margin="0,4" />
             <TextBox x:Name="NombreDeUsuarioTextBox" Margin="0,3" />
-            <TextBox x:Name="ContrasenaTextBox" Margin="0,2" />
+            <TextBox x:Name="ContraseñaTextBox" Margin="0,2" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10,30,10,-93" Grid.Row="1" Grid.ColumnSpan="3">

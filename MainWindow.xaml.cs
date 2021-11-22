@@ -107,5 +107,11 @@ namespace Prueba_Ismarlin_Proyecto
             cVentas cVentas = new cVentas();
             cVentas.Show();
         }
+
+        private void RolesButton_Click(object sender, RoutedEventArgs e)
+        {
+            rRoles rRoles = new rRoles();
+            rRoles.Show();
+        }
     }
 }
