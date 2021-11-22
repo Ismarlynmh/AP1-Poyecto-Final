@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using Prueba_Ismarlin_Proyecto.Entidades;
-using Prueba_Ismarlin_Proyecto.DAL;
+using AP1PoyectoFinal.Entidades;
+using AP1PoyectoFinal.DAL;
 
-namespace Prueba_Ismarlin_Proyecto.BLL
+namespace AP1PoyectoFinal.BLL
 {
     public class ComprasBLL
     {

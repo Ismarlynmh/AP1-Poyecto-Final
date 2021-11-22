@@ -11,11 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Prueba_Ismarlin_Proyecto.Entidades;
-using Prueba_Ismarlin_Proyecto.BLL;
+using AP1PoyectoFinal.Entidades;
+using AP1PoyectoFinal.BLL;
 
 
-namespace Prueba_Ismarlin_Proyecto.UI.Consultas
+namespace AP1PoyectoFinal.UI.Consultas
 {
     /// <summary>
     /// Interaction logic for cProductos.xaml

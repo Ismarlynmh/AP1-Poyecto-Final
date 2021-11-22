@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Prueba_Ismarlin_Proyecto.DAL;
+using AP1PoyectoFinal.DAL;
 
-namespace Prueba_Ismarlin_Proyecto.Migrations
+namespace AP1PoyectoFinal.Migrations
 {
     [DbContext(typeof(Contexto))]
     [Migration("20211122061512_Migracion")]
@@ -18,7 +18,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.11");
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Compras", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Compras", b =>
                 {
                     b.Property<int>("CompraId")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("Compras");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.ComprasDetalle", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.ComprasDetalle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +77,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("ComprasDetalle");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Empleados", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Empleados", b =>
                 {
                     b.Property<int>("EmpleadoId")
                         .ValueGeneratedOnAdd()
@@ -126,7 +126,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("Empleados");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Productos", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Productos", b =>
                 {
                     b.Property<int>("ProductoId")
                         .ValueGeneratedOnAdd()
@@ -169,7 +169,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("Productos");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Roles", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Roles", b =>
                 {
                     b.Property<int>("RolId")
                         .ValueGeneratedOnAdd()
@@ -192,7 +192,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Suplidores", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Suplidores", b =>
                 {
                     b.Property<int>("SuplidorId")
                         .ValueGeneratedOnAdd()
@@ -233,7 +233,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("Suplidores");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Usuarios", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Usuarios", b =>
                 {
                     b.Property<int>("UsuarioId")
                         .ValueGeneratedOnAdd()
@@ -298,7 +298,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Ventas", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Ventas", b =>
                 {
                     b.Property<int>("VentaId")
                         .ValueGeneratedOnAdd()
@@ -333,7 +333,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("Ventas");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.VentasDetalle", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.VentasDetalle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -358,67 +358,67 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("VentasDetalle");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Compras", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Compras", b =>
                 {
-                    b.HasOne("Prueba_Ismarlin_Proyecto.Entidades.Usuarios", null)
+                    b.HasOne("AP1PoyectoFinal.Entidades.Usuarios", null)
                         .WithMany("Compras")
                         .HasForeignKey("UsuariosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.ComprasDetalle", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.ComprasDetalle", b =>
                 {
-                    b.HasOne("Prueba_Ismarlin_Proyecto.Entidades.Compras", null)
+                    b.HasOne("AP1PoyectoFinal.Entidades.Compras", null)
                         .WithMany("Detalle")
                         .HasForeignKey("CompraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Empleados", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Empleados", b =>
                 {
-                    b.HasOne("Prueba_Ismarlin_Proyecto.Entidades.Usuarios", null)
+                    b.HasOne("AP1PoyectoFinal.Entidades.Usuarios", null)
                         .WithMany("Empleados")
                         .HasForeignKey("UsuariosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Productos", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Productos", b =>
                 {
-                    b.HasOne("Prueba_Ismarlin_Proyecto.Entidades.Suplidores", null)
+                    b.HasOne("AP1PoyectoFinal.Entidades.Suplidores", null)
                         .WithMany("Productos")
                         .HasForeignKey("SuplidoresSuplidorId");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.VentasDetalle", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.VentasDetalle", b =>
                 {
-                    b.HasOne("Prueba_Ismarlin_Proyecto.Entidades.Ventas", null)
+                    b.HasOne("AP1PoyectoFinal.Entidades.Ventas", null)
                         .WithMany("Detalle")
                         .HasForeignKey("VentaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Compras", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Compras", b =>
                 {
                     b.Navigation("Detalle");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Suplidores", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Suplidores", b =>
                 {
                     b.Navigation("Productos");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Usuarios", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Usuarios", b =>
                 {
                     b.Navigation("Compras");
 
                     b.Navigation("Empleados");
                 });
 
-            modelBuilder.Entity("Prueba_Ismarlin_Proyecto.Entidades.Ventas", b =>
+            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Ventas", b =>
                 {
                     b.Navigation("Detalle");
                 });

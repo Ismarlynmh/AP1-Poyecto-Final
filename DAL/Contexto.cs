@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using Prueba_Ismarlin_Proyecto.Entidades;
+using AP1PoyectoFinal.Entidades;
 
-namespace Prueba_Ismarlin_Proyecto.DAL
+namespace AP1PoyectoFinal.DAL
 {
     public class Contexto : DbContext
     {

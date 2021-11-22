@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Prueba_Ismarlin_Proyecto.Entidades;
-using Prueba_Ismarlin_Proyecto.UI.Consultas;
-using Prueba_Ismarlin_Proyecto.UI.Registros;
-using Prueba_Ismarlin_Proyecto.BLL;
+using AP1PoyectoFinal.Entidades;
+using AP1PoyectoFinal.UI.Consultas;
+using AP1PoyectoFinal.UI.Registros;
+using AP1PoyectoFinal.BLL;
 
 
 
-namespace Prueba_Ismarlin_Proyecto
+namespace AP1PoyectoFinal
 { 
     /// <summary>
     /// Interaction logic for MainWindow.xaml

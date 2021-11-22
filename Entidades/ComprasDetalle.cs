@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prueba_Ismarlin_Proyecto.Entidades
+namespace AP1PoyectoFinal.Entidades
 {
     public class ComprasDetalle
     { 

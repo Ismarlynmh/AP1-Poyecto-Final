@@ -1,9 +1,9 @@
-﻿<Window x:Class="Prueba_Ismarlin_Proyecto.UI.Registros.rProductos"
+﻿<Window x:Class="AP1PoyectoFinal.UI.Registros.rProductos"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Prueba_Ismarlin_Proyecto.UI.Registros"
+        xmlns:local="clr-namespace:AP1PoyectoFinal.UI.Registros"
         mc:Ignorable="d"
         Title="rProductos" Height="450" Width="500">
     <Grid>

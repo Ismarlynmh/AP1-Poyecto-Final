@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Prueba_Ismarlin_Proyecto.UI.Consultas
+namespace AP1PoyectoFinal.UI.Consultas
 {
     /// <summary>
     /// Lógica de interacción para cEmpleados.xaml

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prueba_Ismarlin_Proyecto.BLL
+namespace AP1PoyectoFinal.BLL
 {
     public class Utilidades
     {

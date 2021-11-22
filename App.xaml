@@ -1,7 +1,7 @@
-﻿<Application x:Class="Prueba_Ismarlin_Proyecto.App"
+﻿<Application x:Class="AP1PoyectoFinal.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Prueba_Ismarlin_Proyecto"
+             xmlns:local="clr-namespace:AP1PoyectoFinal"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

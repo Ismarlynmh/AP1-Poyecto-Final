@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Prueba_Ismarlin_Proyecto.UI.Registros
+namespace AP1PoyectoFinal.UI.Registros
 {
     /// <summary>
     /// Lógica de interacción para rRoles.xaml

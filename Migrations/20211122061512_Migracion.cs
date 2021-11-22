@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Prueba_Ismarlin_Proyecto.Migrations
+namespace AP1PoyectoFinal.Migrations
 {
     public partial class Migracion : Migration
     {

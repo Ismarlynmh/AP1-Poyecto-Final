@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using Prueba_Ismarlin_Proyecto.DAL;
-using Prueba_Ismarlin_Proyecto.Entidades;
+using AP1PoyectoFinal.DAL;
+using AP1PoyectoFinal.Entidades;
 
 
-namespace Prueba_Ismarlin_Proyecto.BLL
+namespace AP1PoyectoFinal.BLL
 {
    public class UsuariosBLL
     {

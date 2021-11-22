@@ -11,11 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Prueba_Ismarlin_Proyecto.BLL;
-using Prueba_Ismarlin_Proyecto.Entidades;
-using Prueba_Ismarlin_Proyecto.UI.Consultas;
+using AP1PoyectoFinal.BLL;
+using AP1PoyectoFinal.Entidades;
+using AP1PoyectoFinal.UI.Consultas;
 
-namespace Prueba_Ismarlin_Proyecto.UI.Registros
+namespace AP1PoyectoFinal.UI.Registros
 {
     /// <summary>
     /// Interaction logic for rProductos.xaml

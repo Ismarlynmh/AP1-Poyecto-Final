@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Prueba_Ismarlin_Proyecto.Entidades;
-using Prueba_Ismarlin_Proyecto.DAL;
+using AP1PoyectoFinal.Entidades;
+using AP1PoyectoFinal.DAL;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Prueba_Ismarlin_Proyecto.BLL
+namespace AP1PoyectoFinal.BLL
 {
     public class SuplidoresBLL
     {

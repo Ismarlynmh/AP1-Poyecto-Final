@@ -12,10 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using Prueba_Ismarlin_Proyecto.BLL;
-using Prueba_Ismarlin_Proyecto.Entidades;
+using AP1PoyectoFinal.BLL;
+using AP1PoyectoFinal.Entidades;
 
-namespace Prueba_Ismarlin_Proyecto.UI.Registros
+namespace AP1PoyectoFinal.UI.Registros
 {
     /// <summary>
     /// Interaction logic for rSuplidores.xaml

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Prueba_Ismarlin_Proyecto.Entidades
+namespace AP1PoyectoFinal.Entidades
 {
     public class Usuarios
     {
