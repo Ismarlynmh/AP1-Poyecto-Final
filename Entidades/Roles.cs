@@ -12,7 +12,6 @@ namespace AP1PoyectoFinal.Entidades
     {
         [Key]
         public int RolId { get; set; }
-        public DateTime FechaCreacion { get; set; } = DateTime.Now;
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public bool EsActivo { get; set; }

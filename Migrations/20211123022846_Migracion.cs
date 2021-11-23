@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AP1PoyectoFinal.Migrations
+namespace Prueba_Ismarlin_Proyecto.Migrations
 {
     public partial class Migracion : Migration
     {
@@ -75,14 +75,11 @@ namespace AP1PoyectoFinal.Migrations
                 {
                     VentaId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false),
-                    EmpleadoId = table.Column<int>(type: "INTEGER", nullable: false),
                     FechaVenta = table.Column<DateTime>(type: "TEXT", nullable: false),
                     SubTotal = table.Column<decimal>(type: "TEXT", nullable: false),
                     ITBIS = table.Column<double>(type: "REAL", nullable: false),
                     Descuento = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Total = table.Column<decimal>(type: "TEXT", nullable: false),
-                    UsuariosId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Total = table.Column<decimal>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,7 +216,7 @@ namespace AP1PoyectoFinal.Migrations
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "UsuarioId", "Apellidos", "Cedula", "Celular", "Contrasena", "Direccion", "Email", "FechaIngreso", "NombreUsuario", "Nombres", "Sexo", "Telefono", "TipoUsuario" },
-                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 22, 2, 15, 1, 152, DateTimeKind.Local).AddTicks(2433), "Admin", "Admin", "Femenino", "8888888888", "Administrador" });
+                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 22, 22, 28, 43, 119, DateTimeKind.Local).AddTicks(7533), "Admin", "Admin", "Femenino", "8888888888", "Administrador" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Compras_UsuariosId",

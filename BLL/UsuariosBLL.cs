@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using AP1PoyectoFinal.DAL;
 using AP1PoyectoFinal.Entidades;
+using System.Security.Cryptography;
 
 
 namespace AP1PoyectoFinal.BLL
@@ -16,11 +17,11 @@ namespace AP1PoyectoFinal.BLL
         public static bool Guardar(Usuarios usuarios)
         {
             bool paso = false;
-            Contexto contexto = new Contexto();
+            Contexto db = new Contexto();
             try
             {
-                if (contexto.Usuarios.Add(usuarios) != null)
-                    paso = (contexto.SaveChanges() > 0);
+                if (db.Usuarios.Add(usuarios) != null)
+                    paso = (db.SaveChanges() > 0);
             }
             catch (Exception)
             {
@@ -29,7 +30,7 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                contexto.Dispose();
+                db.Dispose();
             }
             return paso;
         }
@@ -37,11 +38,11 @@ namespace AP1PoyectoFinal.BLL
         public static bool Modificar(Usuarios usuarios)
         {
             bool paso = false;
-            Contexto contexto = new Contexto();
+            Contexto db = new Contexto();
             try
             {
-                contexto.Entry(usuarios).State = EntityState.Modified;
-                paso = (contexto.SaveChanges() > 0);
+                db.Entry(usuarios).State = EntityState.Modified;
+                paso = (db.SaveChanges() > 0);
             }
             catch (Exception)
             {
@@ -50,7 +51,7 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                contexto.Dispose();
+                db.Dispose();
             }
             return paso;
         }
@@ -58,12 +59,12 @@ namespace AP1PoyectoFinal.BLL
         public static bool Eliminar(int id)
         {
             bool paso = false;
-            Contexto contexto = new Contexto();
+            Contexto db = new Contexto();
             try
             {
-                var eliminar = contexto.Usuarios.Find(id);
-                contexto.Entry(eliminar).State = EntityState.Deleted;
-                paso = (contexto.SaveChanges() > 0);
+                var eliminar = db.Usuarios.Find(id);
+                db.Entry(eliminar).State = EntityState.Deleted;
+                paso = (db.SaveChanges() > 0);
             }
             catch (Exception)
             {
@@ -72,7 +73,7 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                contexto.Dispose();
+                db.Dispose();
             }
             return paso;
         }
@@ -80,10 +81,10 @@ namespace AP1PoyectoFinal.BLL
         public static Usuarios Buscar(int id)
         {
             Usuarios usuario = new Usuarios();
-            Contexto contexto = new Contexto();
+            Contexto db = new Contexto();
             try
             {
-                usuario = contexto.Usuarios.Find(id);
+                usuario = db.Usuarios.Find(id);
             }
             catch (Exception)
             {
@@ -92,7 +93,7 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                contexto.Dispose();
+                db.Dispose();
             }
             return usuario;
         }
@@ -100,10 +101,10 @@ namespace AP1PoyectoFinal.BLL
         public static List<Usuarios> GetList(Expression<Func<Usuarios, bool>> usuario)
         {
             List<Usuarios> lista = new List<Usuarios>();
-            Contexto contexto = new Contexto();
+            Contexto db = new Contexto();
             try
             {
-                lista = contexto.Usuarios.Where(usuario).ToList();
+                lista = db.Usuarios.Where(usuario).ToList();
             }
             catch (Exception)
             {
@@ -112,7 +113,7 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                contexto.Dispose();
+                db.Dispose();
             }
             return lista;
         }

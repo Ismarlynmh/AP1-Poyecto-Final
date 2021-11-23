@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AP1PoyectoFinal.Entidades
 {
@@ -41,5 +42,9 @@ namespace AP1PoyectoFinal.Entidades
             NombreUsuario = string.Empty;
             Contrasena = string.Empty;
         }
+
+        [ForeignKey("RolId")]
+        public virtual Roles Roles { get; set; }
+        public int RolId { get; internal set; }
     }
 }
