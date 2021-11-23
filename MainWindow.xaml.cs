@@ -36,10 +36,15 @@ namespace AP1PoyectoFinal
             UsuarioActivoTextBox.Text = ("Usuario activo: " + usuario.NombreUsuario.ToString() + "\nID Usuario activo: " + usuario.UsuarioId.ToString());
 
         }
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
 
         private void UsuarioButton_Click(object sender, RoutedEventArgs e)
         {
-
+            rUsuarios rUsuarios = new rUsuarios();
+            rUsuarios.Show();
         }
 
         private void EmpleadosButton_Click(object sender, RoutedEventArgs e)
