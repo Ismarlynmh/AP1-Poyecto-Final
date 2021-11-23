@@ -11,7 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
- 
+using AP1PoyectoFinal.BLL;
+using AP1PoyectoFinal.Entidades;
+using AP1PoyectoFinal.UI.Consultas;
+using System.Linq.Expressions;
+
 namespace AP1PoyectoFinal.UI.Consultas
 {
     /// <summary>
@@ -19,6 +23,16 @@ namespace AP1PoyectoFinal.UI.Consultas
     /// </summary>
     public partial class cVentas : Window
     {
+        public static int usuarioSiempreActivoId;
+        Usuarios usuario = new Usuarios();
+        public cVentas(int usuarioId)
+        {
+            InitializeComponent(); 
+            usuarioSiempreActivoId = usuarioId;
+            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
+
+        }
+
         public cVentas()
         {
             InitializeComponent();
@@ -26,7 +40,42 @@ namespace AP1PoyectoFinal.UI.Consultas
 
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
+            var listado = new List<Ventas>();
+            if (CriterioTextBox.Text.Trim().Length > 0)
+            {
+                switch (FiltrarComboBox.SelectedIndex)
+                {
+                    case 0:
+                        listado = VentasBLL.GetList(o => true);
+                        break;
+                    case 1:
+                        int id;
+                        id = int.Parse(CriterioTextBox.Text);
+                        listado = VentasBLL.GetList(o => o.VentaId == id);
+                        break;
+                    case 3:
+                        decimal total;
+                        total = int.Parse(CriterioTextBox.Text);
+                        listado = VentasBLL.GetList(o => o.Total == total);
+                        break;
 
+                    case 4:
+                        DateTime fecha = Convert.ToDateTime(CriterioTextBox.Text);
+                        listado = VentasBLL.GetList(x => x.FechaVenta.Date >= fecha.Date && x.FechaVenta.Date <= fecha.Date);
+                        break;
+
+                }
+            }
+            else if (FiltrarComboBox.SelectedIndex == 4)
+            {
+                listado = VentasBLL.GetList(x => x.FechaVenta.Date >= DesdeDateTimePicker.SelectedDate && x.FechaVenta.Date <= HastaDateTimePicker.SelectedDate);
+            }
+            else
+            {
+                listado = VentasBLL.GetList(p => true);
+            }
+            ConsultarDataGrid.ItemsSource = null;
+            ConsultarDataGrid.ItemsSource = listado;
         }
     }
 }

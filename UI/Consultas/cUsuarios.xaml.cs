@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AP1PoyectoFinal.BLL;
 using AP1PoyectoFinal.Entidades;
+using AP1PoyectoFinal.UI.Consultas;
+using System.Linq.Expressions;
 
 namespace AP1PoyectoFinal.UI.Consultas
 {
@@ -29,8 +31,11 @@ namespace AP1PoyectoFinal.UI.Consultas
             InitializeComponent();
             usuarioSiempreActivoId = usuarioId;
             usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
-            UserActive.Text = ("Usuario activo: " + usuario.NombreUsuario.ToString() + "\nID Usuario activo: " + usuario.UsuarioId.ToString());
 
+        }
+        public cUsuarios()
+        {
+            InitializeComponent();
         }
 
         private void ConsultarButton_Click(object sender, RoutedEventArgs e)
