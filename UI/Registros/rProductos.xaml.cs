@@ -24,8 +24,8 @@ namespace AP1PoyectoFinal.UI.Registros
     {
         Productos producto = new Productos();
         List<Suplidores> lista = new List<Suplidores>();
-   
-        public static int usuarioSiempreActivoId;
+
+        /*public static int usuarioSiempreActivoId;
         Usuarios usuario = new Usuarios();
         public rProductos(int usuarioId)
         {
@@ -35,13 +35,14 @@ namespace AP1PoyectoFinal.UI.Registros
             PrecioCompraTextBox.Text = "0";
             PrecioVentaTextBox.Text = "0";
             this.DataContext = producto;
-            UsuarioIdTextBox.Text = (MainWindow.usuarioSiempreActivoId.ToString());
+            UsuarioIdTextBox.Text = (/*MainWindow.usuarioSiempreActivoId.ToString());
 
             usuarioSiempreActivoId = usuarioId;
-            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
-        }
+            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId); 
 
-        private void Limpiar()
+        }*/
+
+            private void Limpiar()
         {
 
             ProductoIdTextBox.Text = "0";
@@ -53,9 +54,9 @@ namespace AP1PoyectoFinal.UI.Registros
             FechaIngresoDatePicker.SelectedDate = DateTime.Now;
             SuplidorIdTextBox.Text = "0";
             CategoriaIdTextBox.Text = "0";
-            UsuarioIdTextBox.Text = (MainWindow.usuarioSiempreActivoId.ToString());
+            /*UsuarioIdTextBox.Text = /*(/*MainWindow.usuarioSiempreActivoId.ToString()); */
 
-            Productos producto = new Productos();
+             Productos producto = new Productos();
             Actualizar();
         }
         private void LlenaCampo(Productos productos)
@@ -68,7 +69,7 @@ namespace AP1PoyectoFinal.UI.Registros
             PrecioVentaTextBox.Text = Convert.ToString(productos.PrecioDeVenta);
             SuplidorIdTextBox.Text = Convert.ToString(productos.SuplidorId);
             CategoriaIdTextBox.Text = Convert.ToString(productos.CategoriaId);
-            UsuarioIdTextBox.Text = Convert.ToString(productos.UsuariosId);
+            /*UsuarioIdTextBox.Text = Convert.ToString(productos.UsuariosId);*/
         }
         private bool ExisteEnDB()
         {
@@ -142,12 +143,12 @@ namespace AP1PoyectoFinal.UI.Registros
                 CategoriaIdTextBox.Focus();
             }
 
-            if (string.IsNullOrEmpty(UsuarioIdTextBox.Text))
+            /*if (string.IsNullOrEmpty(UsuarioIdTextBox.Text))
             {
                 paso = false;
                 MessageBox.Show("El campo Usuario Id no puede estar vacio", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
                 UsuarioIdTextBox.Focus();
-            }
+            }*/
 
             return paso;
         }

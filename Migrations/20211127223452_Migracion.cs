@@ -13,10 +13,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                 {
                     RolId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
-                    Descripcion = table.Column<string>(type: "TEXT", nullable: true),
-                    EsActivo = table.Column<bool>(type: "INTEGER", nullable: false)
+                    Descripcion = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,7 +59,8 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     TipoUsuario = table.Column<string>(type: "TEXT", nullable: true),
                     FechaIngreso = table.Column<DateTime>(type: "TEXT", nullable: false),
                     NombreUsuario = table.Column<string>(type: "TEXT", nullable: true),
-                    Contrasena = table.Column<string>(type: "TEXT", nullable: true)
+                    Contrasena = table.Column<string>(type: "TEXT", nullable: true),
+                    RolId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,8 +213,8 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Apellidos", "Cedula", "Celular", "Contrasena", "Direccion", "Email", "FechaIngreso", "NombreUsuario", "Nombres", "Sexo", "Telefono", "TipoUsuario" },
-                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 22, 22, 28, 43, 119, DateTimeKind.Local).AddTicks(7533), "Admin", "Admin", "Femenino", "8888888888", "Administrador" });
+                columns: new[] { "UsuarioId", "Apellidos", "Cedula", "Celular", "Contrasena", "Direccion", "Email", "FechaIngreso", "NombreUsuario", "Nombres", "RolId", "Sexo", "Telefono", "TipoUsuario" },
+                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 27, 18, 34, 48, 895, DateTimeKind.Local).AddTicks(7872), "Admin", "Admin", 0, "Femenino", "8888888888", "Administrador" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Compras_UsuariosId",

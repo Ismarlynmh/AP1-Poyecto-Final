@@ -1,32 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using AP1PoyectoFinal.Entidades;
+﻿using AP1PoyectoFinal.Entidades;
 using AP1PoyectoFinal.UI.Consultas;
 using AP1PoyectoFinal.UI.Registros;
-using AP1PoyectoFinal.BLL;
+using System.Windows;
 
 
 
 namespace AP1PoyectoFinal
-{ 
+{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int usuarioSiempreActivoId;
+        Usuarios usuario = new Usuarios();
+        /*public static int usuarioSiempreActivoId;
         Usuarios usuario = new Usuarios();
         public MainWindow(int UsuarioId)
         {
@@ -35,7 +22,7 @@ namespace AP1PoyectoFinal
             usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
             UsuarioActivoTextBox.Text = ("Usuario activo: " + usuario.NombreUsuario.ToString() + "\nID Usuario activo: " + usuario.UsuarioId.ToString());
 
-        }
+    }*/
         public MainWindow()
         {
             InitializeComponent();
@@ -61,7 +48,7 @@ namespace AP1PoyectoFinal
 
         private void ProductosButton_Click(object sender, RoutedEventArgs e)
         {
-            rProductos rProductos = new rProductos(usuarioSiempreActivoId);
+            rProductos rProductos = new rProductos();
             rProductos.Show();
         }
 
@@ -79,7 +66,7 @@ namespace AP1PoyectoFinal
 
         private void ConsultarUsuarioButton_Click(object sender, RoutedEventArgs e)
         {
-            cUsuarios cUsuarios = new cUsuarios(usuarioSiempreActivoId);
+            cUsuarios cUsuarios = new cUsuarios(/*usuarioSiempreActivoId*/);
             cUsuarios.Show();
 
         }
@@ -92,13 +79,13 @@ namespace AP1PoyectoFinal
 
         private void ConsultarSuplidoresrButton_Click(object sender, RoutedEventArgs e)
         {
-            cSuplidores cSuplidores = new cSuplidores(usuarioSiempreActivoId);
+            cSuplidores cSuplidores = new cSuplidores(/*usuarioSiempreActivoId*/);
             cSuplidores.Show();
         }
 
         private void ConsultarProductosButton_Click(object sender, RoutedEventArgs e)
         {
-            cProductos cProductos = new cProductos(usuarioSiempreActivoId);
+            cProductos cProductos = new cProductos(/*usuarioSiempreActivoId*/);
             cProductos.Show();
         }
 
@@ -109,7 +96,7 @@ namespace AP1PoyectoFinal
 
         }
 
-      
+
         private void ConsultarVentasButton_Click(object sender, RoutedEventArgs e)
         {
             cVentas cVentas = new cVentas();

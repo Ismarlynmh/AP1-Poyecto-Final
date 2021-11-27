@@ -24,7 +24,7 @@ namespace AP1PoyectoFinal.UI.Consultas
     /// </summary>
     public partial class cProductos : Window
     {
-        public static int usuarioSiempreActivoId;
+        /*public static int usuarioSiempreActivoId;
         Usuarios usuario = new Usuarios();
         public cProductos(int usuarioId)
         {
@@ -33,7 +33,7 @@ namespace AP1PoyectoFinal.UI.Consultas
             usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
 
 
-        }
+        }*/
 
         public cProductos()
         {
@@ -82,13 +82,13 @@ namespace AP1PoyectoFinal.UI.Consultas
                         listado = ProductosBLL.GetList(x => x.SuplidorId == idS);
                         break;
 
-                    case 7:
+                    /*case 7:
                         int idU;
                         idU = int.Parse(CriterioTextBox.Text);
                         listado = ProductosBLL.GetList(x => x.UsuariosId == idU);
-                        break;
-                }
-            }
+                        break;*/
+    }
+}
             else if (FiltrarComboBox.SelectedIndex == 4)
             {
                 listado = ProductosBLL.GetList(x => x.FechaIngreso.Date >= DesdeDateTimePicker.SelectedDate && x.FechaIngreso.Date <= HastaDateTimePicker.SelectedDate);

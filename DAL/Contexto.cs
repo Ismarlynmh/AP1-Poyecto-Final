@@ -27,7 +27,6 @@ namespace AP1PoyectoFinal.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Usuario por Defecto
             modelBuilder.Entity<Usuarios>().HasData(new Usuarios
             {
                 UsuarioId = 1,

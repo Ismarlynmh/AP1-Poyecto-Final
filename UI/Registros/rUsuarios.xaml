@@ -14,12 +14,13 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="326"></RowDefinition>
+            <RowDefinition Height="350"></RowDefinition>
             <RowDefinition Height="4"></RowDefinition>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
             <Label Content="Usuarios Id" />
+            <Label Content="RolId" />
             <Label Content="Nombres" />
             <Label Content="Apellidos" />
             <Label Content="Cedula " />
@@ -32,6 +33,8 @@
             <Label Content="Fecha de ingreso"/>
             <Label Content="Nombre de usuario " />
             <Label Content="Contraseña" />
+            
+            
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment ="Left" Grid.Row="0" Grid.Column="2" Width="80">
@@ -47,6 +50,7 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5">
             <TextBox x:Name="UsuarioIdTextBox" Margin="0,0"/>
+            <ComboBox x:Name="RolIdComboBox" Height="20" SelectedValue="{Binding RolId}" Width="140" Margin="0,3" SelectionChanged="RolIdComboBox_SelectionChanged"/>
             <TextBox x:Name="NombresTextBox" Margin="0,7"/>
             <TextBox x:Name="ApellidosTextBox" Margin="0,0"/>
             <TextBox x:Name="CedulaTextBox" Margin="0,7"/>
@@ -64,7 +68,7 @@
             </ComboBox>
             <DatePicker x:Name="FechaIngresoDateTimePicker" Margin="0,4" />
             <TextBox x:Name="NombreDeUsuarioTextBox" Margin="0,3" />
-            <TextBox x:Name="ContraseñaTextBox" Margin="0,2" />
+            <PasswordBox PasswordChar="•" x:Name="ContraseñaTextBox" Margin="0,4"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10,30,10,-93" Grid.Row="1" Grid.ColumnSpan="3">

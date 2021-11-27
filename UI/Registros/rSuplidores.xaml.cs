@@ -27,7 +27,7 @@ namespace AP1PoyectoFinal.UI.Registros
         {
             InitializeComponent();
             this.DataContext = suplidor;
-            SuplidorIdTextBox.Text = (MainWindow.usuarioSiempreActivoId.ToString());
+            /*SuplidorIdTextBox.Text = (MainWindow.usuarioSiempreActivoId.ToString()); */
             SuplidorIdTextBox.Text = "0";
 
         }
@@ -68,7 +68,7 @@ namespace AP1PoyectoFinal.UI.Registros
             EmailTextBox.Clear();
             CiudadTextBox.Clear();
 
-            UsuariosIdTextBox.Text = (MainWindow.usuarioSiempreActivoId.ToString());
+            /*UsuariosIdTextBox.Text = (MainWindow.usuarioSiempreActivoId.ToString()); */
 
             Suplidores suplidor = new Suplidores();
             Actualizar();

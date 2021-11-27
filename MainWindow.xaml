@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AP1PoyectoFinal"
         mc:Ignorable="d" 
-       Title="Principal" Height="360" Width="495" WindowStartupLocation="CenterScreen">
+       Title="Principal" Height="380" Width="495" WindowStartupLocation="CenterScreen">
     <Grid >
         <Grid.ColumnDefinitions>
 

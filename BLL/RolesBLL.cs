@@ -94,7 +94,7 @@ namespace AP1PoyectoFinal.BLL
             Roles Rol;
             try
             {
-                Rol = contexto.Roles.Find(RolId);//Busca el registro en la base de datos.
+                Rol = contexto.Roles.Find(RolId);
             }
             catch (Exception)
             {
@@ -136,14 +136,15 @@ namespace AP1PoyectoFinal.BLL
             return ok;
         }
 
-        public static List<Roles> GetList(Expression<Func<Roles, bool>> criterio)
+        public static List<Roles> GetList(Expression<Func<Roles, bool>> expression)
         {
             Contexto contexto = new Contexto();
             List<Roles> lista = new List<Roles>();
 
             try
             {
-                lista = contexto.Roles.Where(criterio).ToList();
+                lista = contexto.Roles.Where(expression).ToList();
+                contexto.Dispose();
             }
             catch (Exception)
             {

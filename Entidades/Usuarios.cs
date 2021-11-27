@@ -44,7 +44,6 @@ namespace AP1PoyectoFinal.Entidades
         }
 
         [ForeignKey("RolId")]
-        public virtual Roles Roles { get; set; }
         public int RolId { get; internal set; }
     }
 }

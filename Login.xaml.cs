@@ -41,11 +41,11 @@ namespace AP1PoyectoFinal
                 if ((item.NombreUsuario == NombreUsuarioTextBox.Text) && (item.Contrasena == contrasenaBox.Password))
                 {
                     UsuarioId = Convert.ToInt32(item.UsuarioId);
-                    MainWindow main = new MainWindow(UsuarioId);
+                    /*MainWindow main = new MainWindow(UsuarioId);
                     main.Show();
                     paso = true;
                     this.Close();
-                    break;
+                    break; */
                 }
             }
             if (paso == false)

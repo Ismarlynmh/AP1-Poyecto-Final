@@ -23,39 +23,26 @@ namespace AP1PoyectoFinal.UI.Registros
     /// </summary>
     public partial class rUsuarios : Window
     {
-        Usuarios usuario = new Usuarios();
+        private Roles Rol;
+        private Usuarios usuario;
         public rUsuarios()
         {
             InitializeComponent();
             this.DataContext = usuario;
-
-            UsuarioIdTextBox.Text = "0";
-            FechaIngresoDateTimePicker.SelectedDate = DateTime.Now;
-
-            SexoComboBox.Items.Add("Masculino");
-            SexoComboBox.Items.Add("Femenino");
-            SexoComboBox.Items.Add("Otro");
-
-            TipoUsuarioComboBox.Items.Add("Empleado");
-            TipoUsuarioComboBox.Items.Add("Administrador");
+            FechaIngresoDateTimePicker.SelectedDate = DateTime.Now; 
+            this.RolIdComboBox.ItemsSource = RolesBLL.GetList(x => true);
+            this.RolIdComboBox.SelectedValuePath = "RolId";
+            this.RolIdComboBox.DisplayMemberPath = "Descripcion";
         }
-        
+        private void Actualizar()
+        {
+            this.DataContext = null;
+            this.DataContext = usuario;
+        }
         private void Limpiar()
         {
-            UsuarioIdTextBox.Text = "0";
-            NombresTextBox.Clear();
-            ApellidosTextBox.Clear();
-            CedulaTextBox.Clear();
-            SexoComboBox.SelectedItem = "";
-            TelefonoTextBox.Clear();
-            CelularTextBox.Clear(); ;
-            DireccionTextBox.Clear(); ;
-            EmailTextBox.Clear(); ;
-            TipoUsuarioComboBox.SelectedItem = "";
-            FechaIngresoDateTimePicker.SelectedDate = DateTime.Now;
-            NombreDeUsuarioTextBox.Clear();
-            ContraseñaTextBox.Clear();
-
+            usuario = new Usuarios();
+            this.DataContext = usuario;
         }
         private Boolean EmailValido(String email)
         {
@@ -101,7 +88,7 @@ namespace AP1PoyectoFinal.UI.Registros
             {
                 paso = false;
                 MessageBox.Show("El campo Apellidos no puede estar vacio", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
-                NombresTextBox.Focus();
+                ApellidosTextBox.Focus();
 
             }
 
@@ -148,22 +135,52 @@ namespace AP1PoyectoFinal.UI.Registros
                 EmailTextBox.Focus();
             }
 
-            if (string.IsNullOrEmpty(NombreDeUsuarioTextBox.Text))
+            /*if (string.IsNullOrEmpty(NombreDeUsuarioTextBox.Text))
             {
                 paso = false;
                 MessageBox.Show("El campo Nombre Usuario no puede estar vacio", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
                 NombreDeUsuarioTextBox.Focus();
-            }
+            }*/
 
-            if (string.IsNullOrEmpty(ContraseñaTextBox.Text))
+            if (string.IsNullOrEmpty(ContraseñaTextBox.Password))
             {
                 paso = false;
                 MessageBox.Show("El campo contraseña Usuario no puede estar vacio", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
-                NombreDeUsuarioTextBox.Focus();
+                ContraseñaTextBox.Focus();
+            }
+            if (RolIdComboBox.Items.Count <= 0)
+            {
+                paso = false;
+                MessageBox.Show("Debe Seleccionar el Rol correcto", "Fallo", MessageBoxButton.OK, MessageBoxImage.Information);
+                RolIdComboBox.Focus();
             }
             return paso;
         }
 
+        
+
+
+        private void EliminarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int id;
+                int.TryParse(UsuarioIdTextBox.Text, out id);
+                if (UsuariosBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado con exito!!!", "ELiminado", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(" No eliminado !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch
+            {
+                MessageBox.Show(" No encontrado !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
         private void LlenaCampo(Usuarios usuario)
         {
             UsuarioIdTextBox.Text = Convert.ToString(usuario.UsuarioId);
@@ -177,34 +194,51 @@ namespace AP1PoyectoFinal.UI.Registros
             EmailTextBox.Text = usuario.Email;
             TipoUsuarioComboBox.SelectedItem = usuario.TipoUsuario;
             FechaIngresoDateTimePicker.SelectedDate = usuario.FechaIngreso;
-            NombreDeUsuarioTextBox.Text = usuario.NombreUsuario;
-            ContraseñaTextBox.Text = usuario.Contrasena;
+            /*NombreDeUsuarioTextBox.Text = usuario.NombreUsuario;*/
+            ContraseñaTextBox.Password = usuario.Contrasena;
         }
 
-
-        private void EliminarButton_Click(object sender, RoutedEventArgs e)
+        private bool ExisteEnDB()
         {
-            if (UsuariosBLL.Eliminar(usuario.UsuarioId))
-            {
-                MessageBox.Show("Elimando", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                Limpiar();
-            }
-            else
-            {
-                MessageBox.Show("No se logro eliminar", "Aviso", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            Usuarios usuario = UsuariosBLL.Buscar(Convert.ToInt32(UsuarioIdTextBox.Text));
+            return (usuario != null);
         }
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (UsuariosBLL.Guardar(usuario))
+            try
             {
-                MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-                Limpiar();
+                bool paso = false;
+
+                if (!Validar())
+                    return;
+
+                if (String.IsNullOrEmpty(UsuarioIdTextBox.Text) || UsuarioIdTextBox.Text == "0")
+                    paso = UsuariosBLL.Guardar(usuario);
+                else
+                {
+                    if (!ExisteEnDB())
+                    {
+                        MessageBox.Show("No existe en la base de " +
+                            "datos", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                    paso = UsuariosBLL.Modificar(usuario);
+                }
+
+                if (paso)
+                {
+                    MessageBox.Show("Guardado!!", "EXITO", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(" No guardado!!", "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("No se logro guardar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(" Usuario Id no valido!!", "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
             }
         }
 
@@ -215,15 +249,37 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            var registro = UsuariosBLL.Buscar(usuario.UsuarioId);
-            if (registro != null)
+            try
             {
-                usuario = registro;
-                this.DataContext = usuario;
+                int id;
+                Usuarios usuarios = new Usuarios();
+                int.TryParse(UsuarioIdTextBox.Text, out id);
+
+                Limpiar();
+
+                usuarios = UsuariosBLL.Buscar(id);
+
+                if (usuarios != null)
+                {
+                    LlenaCampo(usuarios);
+                }
+                else
+                {
+                    MessageBox.Show("No encontrado!!!", "Informacion", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("No se encontro el registro", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                MessageBox.Show("Error en base de datos, intente de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void RolIdComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (RolIdComboBox.SelectedIndex != -1)
+            {
+                Rol = (Roles)RolIdComboBox.SelectedItem;
             }
         }
     }

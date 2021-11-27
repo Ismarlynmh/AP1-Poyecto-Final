@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AP1PoyectoFinal.UI.Registros"
         mc:Ignorable="d"
-        Title="Registrar Permisos" Height="320" Width="350" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" >
+        Title="Formulario roles" Height="320" Width="350" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" >
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10">
             <!--Permiso Id-->
@@ -22,20 +22,10 @@
                 </Button>
             </StackPanel>
 
-            <!--Fecha Creacion-->
-            <Label Content="Fecha Creación" FontStyle="Oblique" FontFamily="Cursive"  FontSize="13"/>
-            <DatePicker Name="FechaCreacionDatePicker" Width="265" HorizontalAlignment="Left" Margin="5,0" SelectedDate="{Binding FechaCreacion}"/>
-
-            <!--Nombre-->
-            <Label Content="Nombre" FontSize="15"/>
-            <TextBox Name="NombreTextBox" Height="20" Width="265" Text="{Binding Nombre}" HorizontalAlignment="Left" Margin="5,0"/>
-
+           
             <!--Descripción-->
             <Label Content="Descripción" FontSize="15"/>
-            <TextBox Name="DescripciónTextBox" Height="20" Width="265" Text="{Binding Descripcion}" HorizontalAlignment="Left" Margin="5,0"/>
-
-            <!--Es acctivo-->
-            <CheckBox Content="Activo" HorizontalAlignment="Left" Margin="5,5,0,0" IsChecked="{Binding EsActivo}"/>
+            <TextBox Name="DescripciónTextBox" Height="50" Width="270" Text="{Binding Descripcion}" HorizontalAlignment="Left" Margin="5,0"/>
 
             <!--Panel de botones-->
             <StackPanel Orientation="Horizontal" Width="223" Margin="0, 20">

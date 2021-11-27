@@ -176,15 +176,6 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("EsActivo")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("RolId");
 
                     b.ToTable("Roles");
@@ -264,6 +255,9 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.Property<string>("Nombres")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("RolId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Sexo")
                         .HasColumnType("TEXT");
 
@@ -287,9 +281,10 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                             Contrasena = "Admin",
                             Direccion = "SFM",
                             Email = "admin123@gmail.com",
-                            FechaIngreso = new DateTime(2021, 11, 22, 22, 28, 43, 119, DateTimeKind.Local).AddTicks(7533),
+                            FechaIngreso = new DateTime(2021, 11, 27, 18, 34, 48, 895, DateTimeKind.Local).AddTicks(7872),
                             NombreUsuario = "Admin",
                             Nombres = "Admin",
+                            RolId = 0,
                             Sexo = "Femenino",
                             Telefono = "8888888888",
                             TipoUsuario = "Administrador"
