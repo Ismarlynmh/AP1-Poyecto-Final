@@ -214,7 +214,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "UsuarioId", "Apellidos", "Cedula", "Celular", "Contrasena", "Direccion", "Email", "FechaIngreso", "NombreUsuario", "Nombres", "RolId", "Sexo", "Telefono", "TipoUsuario" },
-                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 27, 18, 34, 48, 895, DateTimeKind.Local).AddTicks(7872), "Admin", "Admin", 0, "Femenino", "8888888888", "Administrador" });
+                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 28, 19, 26, 43, 443, DateTimeKind.Local).AddTicks(1426), "Admin", "Admin", 0, "Femenino", "8888888888", "Administrador" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Compras_UsuariosId",

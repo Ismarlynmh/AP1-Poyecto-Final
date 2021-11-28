@@ -281,7 +281,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                             Contrasena = "Admin",
                             Direccion = "SFM",
                             Email = "admin123@gmail.com",
-                            FechaIngreso = new DateTime(2021, 11, 27, 18, 34, 48, 895, DateTimeKind.Local).AddTicks(7872),
+                            FechaIngreso = new DateTime(2021, 11, 28, 19, 26, 43, 443, DateTimeKind.Local).AddTicks(1426),
                             NombreUsuario = "Admin",
                             Nombres = "Admin",
                             RolId = 0,
