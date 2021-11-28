@@ -38,22 +38,22 @@ namespace AP1PoyectoFinal
             //Si existe usuario en base de datos
             foreach (var item in lista)
             {
-                if ((item.NombreUsuario == NombreUsuarioTextBox.Text) && (item.Contrasena == contrasenaBox.Password))
+                if ((item.NombreUsuario == NombreDeUsuarioTextBox.Text) && (item.Contrasena == ContraseñaTextBox.Password))
                 {
                     UsuarioId = Convert.ToInt32(item.UsuarioId);
-                    /*MainWindow main = new MainWindow(UsuarioId);
+                    MainWindow main = new MainWindow(UsuarioId);
                     main.Show();
                     paso = true;
                     this.Close();
-                    break; */
+                    break; 
                 }
             }
             if (paso == false)
             {
                 MessageBox.Show("Nombre de usuario o Contraseña incorrecto", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-                NombreUsuarioTextBox.Text = string.Empty;
-                contrasenaBox.Password = string.Empty;
-                NombreUsuarioTextBox.Focus();
+                NombreDeUsuarioTextBox.Text = string.Empty;
+                ContraseñaTextBox.Password = string.Empty;
+                NombreDeUsuarioTextBox.Focus();
             }
         }
 

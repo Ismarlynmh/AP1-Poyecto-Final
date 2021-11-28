@@ -29,12 +29,12 @@
 
         <Image Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Source="/Resources/Copia de  Logo.jpg" />
 
-        <Label Content="Nombre usuario: " HorizontalAlignment="Right"   Grid.Column="0" Grid.Row="4" FontSize="24" FontWeight="Normal"/>
+        <Label Content="Nombre de usuario: " HorizontalAlignment="Right"   Grid.Column="0" Grid.Row="4" FontSize="24" FontWeight="Normal"/>
         <Label Content="Contraseña: "  HorizontalAlignment="Right"  Grid.Column="0" Grid.Row="6" FontSize="24" FontWeight="Normal"/>
 
 
-        <TextBox x:Name="NombreUsuarioTextBox" Grid.Column="2" FontSize="24" Grid.Row="4"/>
-        <PasswordBox PasswordChar="*" Name="contrasenaBox" Grid.Column="2" FontSize="24" Grid.Row="6" />
+        <TextBox x:Name="NombreDeUsuarioTextBox" Grid.Column="2" FontSize="24" Grid.Row="4"/>
+        <PasswordBox PasswordChar="*" Name="ContraseñaTextBox" Grid.Column="2" FontSize="24" Grid.Row="6" />
         <Button x:Name="IngresarButton" Content="Iniciar sesion" Grid.ColumnSpan="4" Grid.Row="7" FontSize="24" FontWeight="Bold" Margin="174,18,110,2" RenderTransformOrigin="0.562,0.401" Grid.RowSpan="2" Click="IngresarButton_Click" />
 
 
