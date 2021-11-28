@@ -1,23 +1,24 @@
 ﻿<Window x:Class="AP1PoyectoFinal.UI.Registros.rUsuarios"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AP1PoyectoFinal.UI.Registros"
         mc:Ignorable="d"
-         Title="Formulario de Usuarios" Height="450" Width="800">
+         Title="Formulario de Usuarios" Height="550" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="350"></RowDefinition>
-            <RowDefinition Height="4"></RowDefinition>
+            <RowDefinition Height="410"></RowDefinition>
+            <RowDefinition Height="0"></RowDefinition>
         </Grid.RowDefinitions>
-
+        <!---
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
             <Label Content="Usuarios Id" />
             <Label Content="RolId" />
@@ -33,12 +34,13 @@
             <Label Content="Fecha de ingreso"/>
             <Label Content="Nombre de usuario " />
             <Label Content="Contraseña" />
-            
-            
-        </StackPanel>
 
-        <StackPanel Orientation="Vertical" HorizontalAlignment ="Left" Grid.Row="0" Grid.Column="2" Width="80">
-            <Button x:Name="BuscarButton" Height="30" Width="80" Background="White" Click="BuscarButton_Click" >
+        </StackPanel>
+        -->
+
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment ="Left" Grid.Row="0" Grid.Column="2" Width="132">
+            <Button x:Name="BuscarButton" Height="35" Width="120" Background="White" Click="BuscarButton_Click" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Resources/buscar (1).png" />
                     <Label Content="Buscar"/>
@@ -49,44 +51,46 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5">
-            <TextBox x:Name="UsuarioIdTextBox" Margin="0,0"/>
-            <ComboBox x:Name="RolIdComboBox" Height="20" SelectedValue="{Binding RolId}" Width="140" Margin="0,3" SelectionChanged="RolIdComboBox_SelectionChanged"/>
-            <TextBox x:Name="NombresTextBox" Margin="0,7"/>
-            <TextBox x:Name="ApellidosTextBox" Margin="0,0"/>
-            <TextBox x:Name="CedulaTextBox" Margin="0,7"/>
-            <ComboBox Name="SexoComboBox" Height="18" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top">
+
+            <TextBox   x:Name="UsuarioIdTextBox"  materialDesign:HintAssist.Hint="Usuarios Id " Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <ComboBox  materialDesign:HintAssist.Hint="RolId" x:Name="RolIdComboBox" Height="28" SelectedValue="{Binding RolId}" Width="287" Margin="0,3" SelectionChanged="RolIdComboBox_SelectionChanged"/>
+            <TextBox x:Name="NombresTextBox" materialDesign:HintAssist.Hint="Nombre "/>
+            <TextBox x:Name="ApellidosTextBox" materialDesign:HintAssist.Hint="Apellido"/>
+
+            <ComboBox Name="SexoComboBox"  materialDesign:HintAssist.Hint="Sexo " Height="25" Grid.Column="2" Grid.Row="1" >
                 <ComboBoxItem Content="Femenino"/>
                 <ComboBoxItem Content="Masculino"/>
             </ComboBox>
-            <TextBox x:Name="DireccionTextBox" Margin="0,7" />
-            <TextBox x:Name="TelefonoTextBox" Margin="0,4"/>
-            <TextBox x:Name="CelularTextBox" Margin="0,4" />
-            <TextBox x:Name="EmailTextBox" Margin="0,4" />
-            <ComboBox Name="TipoUsuarioComboBox" Height="20" Grid.Column="2" Grid.Row="1" VerticalAlignment="Top">
+            <TextBox x:Name="DireccionTextBox" materialDesign:HintAssist.Hint="Direccion" />
+            <TextBox x:Name="TelefonoTextBox" materialDesign:HintAssist.Hint="Telefono"/>
+            <TextBox x:Name="CelularTextBox" materialDesign:HintAssist.Hint="Celular" />
+            <TextBox x:Name="EmailTextBox" materialDesign:HintAssist.Hint="Email" />
+            <ComboBox Name="TipoUsuarioComboBox" materialDesign:HintAssist.Hint="Tipo Usuarios"  Height="25" Grid.Column="2" Grid.Row="1">
                 <ComboBoxItem Content="Administrador"/>
                 <ComboBoxItem Content="Empleado"/>
             </ComboBox>
-            <DatePicker x:Name="FechaIngresoDateTimePicker" Margin="0,4" />
-            <TextBox x:Name="NombreDeUsuarioTextBox" Margin="0,3" />
-            <PasswordBox PasswordChar="•" x:Name="ContraseñaTextBox" Margin="0,4"/>
+            <DatePicker x:Name="FechaIngresoDateTimePicker"  Width="291" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            <Label Content=" "/>
+            <TextBox x:Name="NombreDeUsuarioTextBox"  materialDesign:HintAssist.Hint="Nombre de usurios" />
+            <PasswordBox PasswordChar="•" x:Name="ContraseñaTextBox"  materialDesign:HintAssist.Hint="Contraseñas" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="10,30,10,-93" Grid.Row="1" Grid.ColumnSpan="3">
+        <StackPanel Orientation="Horizontal" Margin="97,32,0,-95" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="400" Grid.Column="1">
 
-            <Button x:Name="NuevoButtton"  Height="40" Width="80" Background="White" Click="NuevoButtton_Click">
+            <Button x:Name="NuevoButtton"  Height="40" Width="122" Background="White" Click="NuevoButtton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Resources/file-add.png" Height="30"/>
                     <Label Content="Nuevo" />
                 </StackPanel>
             </Button>
 
-            <Button x:Name="GuardarButton"  Height="40" Width="85" Margin="5" Background="White" Click="GuardarButton_Click">
+            <Button x:Name="GuardarButton"  Height="40" Width="124" Margin="5" Background="White" Click="GuardarButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Resources/disco (1).png"  Height="30" />
                     <Label Content="Guardar"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="EliminarButton" Height="39" Width="85" Background="White" Click="EliminarButton_Click">
+            <Button x:Name="EliminarButton" Height="39" Width="144" Background="White" Click="EliminarButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Resources/trash.png" Width="30"/>
                     <Label Content="Eliminar" />
