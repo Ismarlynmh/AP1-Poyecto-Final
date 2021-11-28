@@ -27,8 +27,6 @@
             <Label Content="Precio de venta: " />
             <Label Content="Fecha Ingreso: " />
             <Label Content="Suplidor Id: "/>
-            <Label Content="Categoria Id: " />
-            <Label Content="UsuarioId:" />
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
@@ -40,8 +38,6 @@
             <TextBox x:Name="PrecioVentaTextBox" Margin="0,3" />
             <DatePicker x:Name="FechaIngresoDatePicker" Margin="0,4"/>
             <TextBox x:Name="SuplidorIdTextBox" Margin="0,1" />
-            <TextBox x:Name="CategoriaIdTextBox" Margin="0,5" />
-            <TextBox x:Name="UsuarioIdTextBox" Margin="0,4" />
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment ="Left" Grid.Row="0" Grid.Column="2" Width="80">

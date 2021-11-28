@@ -19,7 +19,7 @@ using System.Text.RegularExpressions;
 namespace AP1PoyectoFinal.UI.Registros
 {
     /// <summary>
-    /// Lógica de interacción para rUsuarios.xaml
+    /// Lógica de interacción para rUsuarios.xaml\
     /// </summary>
     public partial class rUsuarios : Window
     {
@@ -135,12 +135,12 @@ namespace AP1PoyectoFinal.UI.Registros
                 EmailTextBox.Focus();
             }
 
-            /*if (string.IsNullOrEmpty(NombreDeUsuarioTextBox.Text))
+            if (string.IsNullOrEmpty(NombreDeUsuarioTextBox.Text))
             {
                 paso = false;
                 MessageBox.Show("El campo Nombre Usuario no puede estar vacio", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
                 NombreDeUsuarioTextBox.Focus();
-            }*/
+            }
 
             if (string.IsNullOrEmpty(ContraseñaTextBox.Password))
             {
@@ -194,8 +194,9 @@ namespace AP1PoyectoFinal.UI.Registros
             EmailTextBox.Text = usuario.Email;
             TipoUsuarioComboBox.SelectedItem = usuario.TipoUsuario;
             FechaIngresoDateTimePicker.SelectedDate = usuario.FechaIngreso;
-            /*NombreDeUsuarioTextBox.Text = usuario.NombreUsuario;*/
+            NombreDeUsuarioTextBox.Text = usuario.NombreUsuario;
             ContraseñaTextBox.Password = usuario.Contrasena;
+            RolIdComboBox.SelectedItem = usuario.RolId;
         }
 
         private bool ExisteEnDB()

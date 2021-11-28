@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Text.RegularExpressions;
 using AP1PoyectoFinal.BLL;
 using AP1PoyectoFinal.Entidades;
 
@@ -27,7 +27,6 @@ namespace AP1PoyectoFinal.UI.Registros
         {
             InitializeComponent();
             this.DataContext = suplidor;
-            /*SuplidorIdTextBox.Text = (MainWindow.usuarioSiempreActivoId.ToString()); */
             SuplidorIdTextBox.Text = "0";
 
         }
@@ -37,45 +36,112 @@ namespace AP1PoyectoFinal.UI.Registros
             return (suplidores != null);
         }
 
+        private Boolean EmailValido(String email)
+        {
+            String expresion;
+            expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool NumeroValido(string telefono)
+        {
+            return Regex.Match(telefono,
+                @"^([\+]?1[-]?|[0])?[1-9][0-9]{9}$").Success;
+        }
+
         private void LlenaCampo(Suplidores suplidores)
         {
             SuplidorIdTextBox.Text = Convert.ToString(suplidores.SuplidorId);
-            NombreTextBox.Text = suplidores.NombreSuplidor;
-            ApellidoTextBox.Text = suplidores.Apellidos;
+            NombreSuplidorTextBox.Text = suplidores.NombreSuplidor;
+            ApellidosTextBox.Text = suplidores.Apellidos;
             NombreCompaniaTextBox.Text = suplidores.NombreCompania;
             DireccionTextBox.Text = suplidores.Direccion;
             TelefonoTextBox.Text = suplidores.Telefono;
             CelularTextBox.Text = suplidores.Celular;
             EmailTextBox.Text = suplidores.Email;
             CiudadTextBox.Text = suplidores.Ciudad;
-
-            UsuariosIdTextBox.Text = Convert.ToString(suplidores.UsuariosId);
+            FechaIngresoDateTimePicker.SelectedDate = suplidores.FechaIngreso;
         }
+        public static bool CedulaValida(string cedula)
+        {
+            return Regex.Match(cedula,
+                @"^([\+]?1[-]?|[0])?[1-9][0-9]{10}$").Success;
+        }
+
         private void Actualizar()
         {
             this.DataContext = null;
             this.DataContext = suplidor;
         }
+
         private void Limpiar()
         {
             SuplidorIdTextBox.Text = "0";
-            NombreTextBox.Clear();
-            ApellidoTextBox.Clear();
+            NombreSuplidorTextBox.Clear();
+            ApellidosTextBox.Clear();
             NombreCompaniaTextBox.Clear();
             DireccionTextBox.Clear();
             TelefonoTextBox.Clear();
             CelularTextBox.Clear();
             EmailTextBox.Clear();
             CiudadTextBox.Clear();
-
-            /*UsuariosIdTextBox.Text = (MainWindow.usuarioSiempreActivoId.ToString()); */
+            FechaIngresoDateTimePicker.SelectedDate = DateTime.Now;
 
             Suplidores suplidor = new Suplidores();
             Actualizar();
         }
+
         private bool Validar()
         {
             bool paso = true;
+
+            if (string.IsNullOrEmpty(FechaIngresoDateTimePicker.Text))
+            {
+                paso = false;
+                FechaIngresoDateTimePicker.Focus();
+            }
+
+            if (string.IsNullOrEmpty(CiudadTextBox.Text))
+            {
+                paso = false;
+                CiudadTextBox.Focus();
+            }
+
+            if (!EmailValido(EmailTextBox.Text))
+            {
+                paso = false;
+                MessageBox.Show("Email No Valido !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
+                EmailTextBox.Focus();
+            }
+
+            if (!NumeroValido(CelularTextBox.Text))
+            {
+                paso = false;
+                MessageBox.Show("Celular No Valido, Debe introducir solo números !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CelularTextBox.Focus();
+            }
+
+            if (!NumeroValido(TelefonoTextBox.Text))
+            {
+                paso = false;
+                MessageBox.Show("Teléfono No Valido, Debe introducir solo números !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
+                TelefonoTextBox.Focus();
+            }
 
             if (string.IsNullOrEmpty(DireccionTextBox.Text))
             {
@@ -87,6 +153,19 @@ namespace AP1PoyectoFinal.UI.Registros
             {
                 paso = false;
                 NombreCompaniaTextBox.Focus();
+            }
+
+            if (string.IsNullOrEmpty(ApellidosTextBox.Text))
+            {
+                paso = false;
+                ApellidosTextBox.Focus();
+
+            }
+
+            if (string.IsNullOrEmpty(NombreSuplidorTextBox.Text))
+            {
+                paso = false;
+                NombreSuplidorTextBox.Focus();
             }
             return paso;
         }

@@ -23,15 +23,6 @@ namespace AP1PoyectoFinal.UI.Consultas
     /// </summary>
     public partial class cSuplidores : Window
     {
-        /* public static int usuarioSiempreActivoId;
-         Usuarios usuario = new Usuarios();
-         public cSuplidores(int usuarioId)
-         {
-             InitializeComponent();
-             usuarioSiempreActivoId = usuarioId;
-             usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
-
-         }*/
 
         public cSuplidores()
          {
@@ -91,12 +82,6 @@ namespace AP1PoyectoFinal.UI.Consultas
                          DateTime fecha = Convert.ToDateTime(CriterioTextBox.Text);
                          listado = SuplidoresBLL.GetList(x => x.FechaIngreso.Date >= fecha.Date && x.FechaIngreso.Date <= fecha.Date);
                          break;
-
-                    /* case 11:
-                         int idU;
-                         idU = int.Parse(CriterioTextBox.Text);
-                         listado = SuplidoresBLL.GetList(x => x.UsuariosId == idU);
-                         break;*/
 
     }
 }

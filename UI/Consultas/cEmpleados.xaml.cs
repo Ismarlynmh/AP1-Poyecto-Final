@@ -23,15 +23,6 @@ namespace AP1PoyectoFinal.UI.Consultas
     /// </summary>
     public partial class cEmpleados : Window
     {
-        public static int usuarioSiempreActivoId;
-        Usuarios usuario = new Usuarios();
-        public cEmpleados(int usuarioId)
-        {
-            InitializeComponent();
-            usuarioSiempreActivoId = usuarioId;
-            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
-
-        }
         public cEmpleados()
         {
             InitializeComponent();

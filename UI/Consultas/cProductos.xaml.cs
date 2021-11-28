@@ -24,16 +24,6 @@ namespace AP1PoyectoFinal.UI.Consultas
     /// </summary>
     public partial class cProductos : Window
     {
-        /*public static int usuarioSiempreActivoId;
-        Usuarios usuario = new Usuarios();
-        public cProductos(int usuarioId)
-        {
-            InitializeComponent();
-            usuarioSiempreActivoId = usuarioId;
-            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
-
-
-        }*/
 
         public cProductos()
         {
@@ -82,11 +72,6 @@ namespace AP1PoyectoFinal.UI.Consultas
                         listado = ProductosBLL.GetList(x => x.SuplidorId == idS);
                         break;
 
-                    /*case 7:
-                        int idU;
-                        idU = int.Parse(CriterioTextBox.Text);
-                        listado = ProductosBLL.GetList(x => x.UsuariosId == idU);
-                        break;*/
     }
 }
             else if (FiltrarComboBox.SelectedIndex == 4)

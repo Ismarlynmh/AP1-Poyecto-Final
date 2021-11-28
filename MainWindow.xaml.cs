@@ -1,6 +1,7 @@
 ﻿using AP1PoyectoFinal.Entidades;
 using AP1PoyectoFinal.UI.Consultas;
 using AP1PoyectoFinal.UI.Registros;
+using AP1PoyectoFinal.BLL;
 using System.Windows;
 
 
@@ -13,8 +14,7 @@ namespace AP1PoyectoFinal
     public partial class MainWindow : Window
     {
         Usuarios usuario = new Usuarios();
-        /*public static int usuarioSiempreActivoId;
-        Usuarios usuario = new Usuarios();
+        public static int usuarioSiempreActivoId;
         public MainWindow(int UsuarioId)
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace AP1PoyectoFinal
             usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
             UsuarioActivoTextBox.Text = ("Usuario activo: " + usuario.NombreUsuario.ToString() + "\nID Usuario activo: " + usuario.UsuarioId.ToString());
 
-    }*/
+    }
         public MainWindow()
         {
             InitializeComponent();
@@ -66,7 +66,7 @@ namespace AP1PoyectoFinal
 
         private void ConsultarUsuarioButton_Click(object sender, RoutedEventArgs e)
         {
-            cUsuarios cUsuarios = new cUsuarios(/*usuarioSiempreActivoId*/);
+            cUsuarios cUsuarios = new cUsuarios();
             cUsuarios.Show();
 
         }
@@ -79,13 +79,13 @@ namespace AP1PoyectoFinal
 
         private void ConsultarSuplidoresrButton_Click(object sender, RoutedEventArgs e)
         {
-            cSuplidores cSuplidores = new cSuplidores(/*usuarioSiempreActivoId*/);
+            cSuplidores cSuplidores = new cSuplidores();
             cSuplidores.Show();
         }
 
         private void ConsultarProductosButton_Click(object sender, RoutedEventArgs e)
         {
-            cProductos cProductos = new cProductos(/*usuarioSiempreActivoId*/);
+            cProductos cProductos = new cProductos();
             cProductos.Show();
         }
 
@@ -99,7 +99,7 @@ namespace AP1PoyectoFinal
 
         private void ConsultarVentasButton_Click(object sender, RoutedEventArgs e)
         {
-            cVentas cVentas = new cVentas();
+            cVentas cVentas = new cVentas(usuarioSiempreActivoId);
             cVentas.Show();
         }
 
@@ -111,10 +111,9 @@ namespace AP1PoyectoFinal
 
         private void CerrarSecion_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            LogIn logIn = new LogIn();
+            Login login = new Login();
             this.Close();
-            logIn.Show();*/
+            login.Show();
 
         }
     }

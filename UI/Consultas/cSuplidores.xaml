@@ -39,7 +39,6 @@
             <ComboBoxItem Content="Ciudad"/>
             <ComboBoxItem Content="Email"/>
             <ComboBoxItem Content="Fecha Ingreso"/>
-            <ComboBoxItem Content="Usuario Id"/>
         </ComboBox>
 
         <TextBlock Text="Criterio" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
@@ -77,7 +76,6 @@
                 <DataGridTextColumn Header="Ciudad" Binding="{Binding Ciudad}"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
                 <DataGridTextColumn Header="Fecha Ingreso" Binding="{Binding FechaIngreso}"/>
-                <DataGridTextColumn Header="Usuario Id" Binding="{Binding UsuariosId}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

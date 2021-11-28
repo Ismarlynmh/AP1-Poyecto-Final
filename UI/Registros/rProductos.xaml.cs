@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using AP1PoyectoFinal.BLL;
 using AP1PoyectoFinal.Entidades;
 using AP1PoyectoFinal.UI.Consultas;
+using System.Text.RegularExpressions;
 
 namespace AP1PoyectoFinal.UI.Registros
 {
@@ -24,10 +25,7 @@ namespace AP1PoyectoFinal.UI.Registros
     {
         Productos producto = new Productos();
         List<Suplidores> lista = new List<Suplidores>();
-
-        /*public static int usuarioSiempreActivoId;
-        Usuarios usuario = new Usuarios();
-        public rProductos(int usuarioId)
+        public rProductos()
         {
             InitializeComponent();
             FechaIngresoDatePicker.SelectedDate = DateTime.Now;
@@ -35,12 +33,8 @@ namespace AP1PoyectoFinal.UI.Registros
             PrecioCompraTextBox.Text = "0";
             PrecioVentaTextBox.Text = "0";
             this.DataContext = producto;
-            UsuarioIdTextBox.Text = (/*MainWindow.usuarioSiempreActivoId.ToString());
 
-            usuarioSiempreActivoId = usuarioId;
-            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId); 
-
-        }*/
+        }
 
             private void Limpiar()
         {
@@ -53,8 +47,6 @@ namespace AP1PoyectoFinal.UI.Registros
             PrecioCompraTextBox.Text = "0";
             FechaIngresoDatePicker.SelectedDate = DateTime.Now;
             SuplidorIdTextBox.Text = "0";
-            CategoriaIdTextBox.Text = "0";
-            /*UsuarioIdTextBox.Text = /*(/*MainWindow.usuarioSiempreActivoId.ToString()); */
 
              Productos producto = new Productos();
             Actualizar();
@@ -68,8 +60,6 @@ namespace AP1PoyectoFinal.UI.Registros
             PrecioCompraTextBox.Text = Convert.ToString(productos.PrecioDeCompra);
             PrecioVentaTextBox.Text = Convert.ToString(productos.PrecioDeVenta);
             SuplidorIdTextBox.Text = Convert.ToString(productos.SuplidorId);
-            CategoriaIdTextBox.Text = Convert.ToString(productos.CategoriaId);
-            /*UsuarioIdTextBox.Text = Convert.ToString(productos.UsuariosId);*/
         }
         private bool ExisteEnDB()
         {
@@ -136,19 +126,6 @@ namespace AP1PoyectoFinal.UI.Registros
                 SuplidorIdTextBox.Focus();
             }
 
-            if (string.IsNullOrEmpty(CategoriaIdTextBox.Text))
-            {
-                paso = false;
-                MessageBox.Show("El campo Categoria Id no puede estar vacio", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
-                CategoriaIdTextBox.Focus();
-            }
-
-            /*if (string.IsNullOrEmpty(UsuarioIdTextBox.Text))
-            {
-                paso = false;
-                MessageBox.Show("El campo Usuario Id no puede estar vacio", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
-                UsuarioIdTextBox.Focus();
-            }*/
 
             return paso;
         }

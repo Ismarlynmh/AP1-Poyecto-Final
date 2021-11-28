@@ -34,9 +34,6 @@
             <ComboBoxItem Content="Nombre Producto"/>
             <ComboBoxItem Content="Marca Producto"/>
             <ComboBoxItem Content="Fecha Ingreso"/>
-            <ComboBoxItem Content="Categoria Id"/>
-            <ComboBoxItem Content="Suplidor Id"/>
-            <ComboBoxItem Content="Usuario Id"/>
 
         </ComboBox>
 
@@ -64,9 +61,6 @@
                 <DataGridTextColumn Header="Precio de venta" Binding="{Binding PrecioDeVenta}"/>
                 <DataGridTextColumn Header="Precio de compra" Binding="{Binding PrecioDeCompra}"/>
                 <DataGridTextColumn Header="Fecha Ingreso" Binding="{Binding FechaIngreso}"/>
-                <DataGridTextColumn Header="CategoriaId" Binding="{Binding CategoriaId}"/>
-                <DataGridTextColumn Header="SuplidorId" Binding="{Binding SuplidorId}"/>
-                <DataGridTextColumn Header="Usuario Id" Binding="{Binding UsuariosId}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

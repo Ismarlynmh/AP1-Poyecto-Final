@@ -29,7 +29,7 @@
             <Label Content="Celular" />
             <Label Content="Email " />
             <Label Content="Ciudad"/>
-            <Label Content="Usuario Id"/>
+            <Label Content="Fecha de ingreso"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment ="Left" Grid.Row="0" Grid.Column="2" Width="80">
@@ -43,15 +43,16 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" >
             <TextBox x:Name="SuplidorIdTextBox" Margin="0,5"/>
-            <TextBox x:Name="NombreTextBox" Margin="0,4"/>
-            <TextBox x:Name="ApellidoTextBox" Margin="0,4"/>
+            <TextBox x:Name="NombreSuplidorTextBox" Margin="0,4"/>
+            <TextBox x:Name="ApellidosTextBox" Margin="0,4"/>
             <TextBox x:Name="NombreCompaniaTextBox" Margin="0,3"/>
             <TextBox x:Name="DireccionTextBox" Margin="0,4"/>
             <TextBox x:Name="TelefonoTextBox" Margin="0,5"/>
             <TextBox x:Name="CelularTextBox" Margin="0,4"/>
             <TextBox x:Name="EmailTextBox" Margin="0,3"/>
             <TextBox x:Name="CiudadTextBox" Margin="0,5"/>
-            <TextBox x:Name="UsuariosIdTextBox" Margin="0,4"/>
+            <DatePicker x:Name="FechaIngresoDateTimePicker" Margin="0,4" />
+
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10,0,10,-93" Grid.Row="1" Grid.ColumnSpan="3">
 

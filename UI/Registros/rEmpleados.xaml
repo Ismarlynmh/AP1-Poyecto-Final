@@ -31,7 +31,6 @@
             <Label Content="Sueldo " />
             <Label Content="Fecha de Nacimiento" />
             <Label Content="Fecha de ingreso"/>
-            <Label Content="UsuarioId" />
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment ="Left" Grid.Row="0" Grid.Column="2" Width="80">
@@ -46,9 +45,9 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5">
-            <TextBox x:Name="EmpleadosIdTextBox" Margin="0,1"/>
-            <TextBox x:Name="NombreTextBox" Margin="0,7"/>
-            <TextBox x:Name="ApellidoTextBox" Margin="0,0"/>
+            <TextBox x:Name="EmpleadoIdTextBox" Margin="0,1"/>
+            <TextBox x:Name="NombresTextBox" Margin="0,7"/>
+            <TextBox x:Name="ApellidosTextBox" Margin="0,0"/>
             <TextBox x:Name="CedulaTextBox" Margin="0,7"/>
             <TextBox x:Name="DireccionTextBox" Margin="0,3" />
             <TextBox x:Name="TelefonoTextBox" Margin="0,5"/>
@@ -56,9 +55,8 @@
             <TextBox x:Name="EmailTextBox" Margin="0,5" />
             <TextBox x:Name="CargoTextBox" Margin="0,5" />
             <TextBox x:Name="SueldoTextBox" Margin="0,5" />
-            <DatePicker x:Name="FechaIngreso" Margin="0,0 " />
-            <DatePicker x:Name="FechaNacimiento" Margin="0,0 " />
-            <TextBox x:Name="UsuarioIdTextBox" Margin="0,4" />
+            <DatePicker x:Name="FechaIngresoDateTimePicker" Margin="0,0 " />
+            <DatePicker x:Name="FechaNacimientoDateTimePicker" Margin="0,0 " />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10,30,10,-93" Grid.Row="1" Grid.ColumnSpan="3">
