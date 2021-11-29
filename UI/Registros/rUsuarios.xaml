@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="410"></RowDefinition>
+            <RowDefinition Height="430"></RowDefinition>
             <RowDefinition Height="0"></RowDefinition>
         </Grid.RowDefinitions>
         <!---
@@ -56,6 +56,8 @@
             <ComboBox  materialDesign:HintAssist.Hint="RolId" x:Name="RolIdComboBox" Height="28" SelectedValue="{Binding RolId}" Width="287" Margin="0,3" SelectionChanged="RolIdComboBox_SelectionChanged"/>
             <TextBox x:Name="NombresTextBox" materialDesign:HintAssist.Hint="Nombre "/>
             <TextBox x:Name="ApellidosTextBox" materialDesign:HintAssist.Hint="Apellido"/>
+            <TextBox x:Name="CedulaTextBox" materialDesign:HintAssist.Hint="Cedula"/>
+
 
             <ComboBox Name="SexoComboBox"  materialDesign:HintAssist.Hint="Sexo " Height="25" Grid.Column="2" Grid.Row="1" >
                 <ComboBoxItem Content="Femenino"/>
@@ -75,7 +77,7 @@
             <PasswordBox PasswordChar="•" x:Name="ContraseñaTextBox"  materialDesign:HintAssist.Hint="Contraseñas" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="97,32,0,-95" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="400" Grid.Column="1">
+        <StackPanel Orientation="Horizontal" Margin="100,23,0,-86" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="400" Grid.Column="1">
 
             <Button x:Name="NuevoButtton"  Height="40" Width="122" Background="White" Click="NuevoButtton_Click">
                 <StackPanel Orientation="Horizontal">
