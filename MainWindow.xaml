@@ -13,7 +13,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AP1PoyectoFinal"
         mc:Ignorable="d" 
-       Title="Principal" Height="380" Width="495" WindowStartupLocation="CenterScreen">
+       Title="Principal" Height="500" Width="500" WindowStartupLocation="CenterScreen">
     <Grid >
         <Grid.ColumnDefinitions>
 
@@ -53,22 +53,32 @@
 
         <Label Content="Registros" HorizontalAlignment="Center" Grid.Row="2" FontSize="16" FontWeight="Bold"/>
 
-        <Button x:Name="UsuarioButton" Content="Usuarios" FontSize="16" Grid.Row="4" Grid.Column="0"  Background="White" Click="UsuarioButton_Click"/>
-        <Button x:Name="EmpleadosButton" Content="Empleados" FontSize="16" Grid.Row="8" Grid.Column="0"  Background="White" Click="EmpleadosButton_Click"/>
-        <Button x:Name="SuplidoresrButton" Content="Suplidores" FontSize="16" Grid.Row="10" Grid.Column="0"  Background="White" Click="SuplidoresrButton_Click" />
-        <Button x:Name="ProductosButton" Content="Productos" FontSize="16" Grid.Row="13" Grid.Column="0"  Background="White" Click="ProductosButton_Click"/>
-        <Button x:Name="ComprasButton" Content="Compras" FontSize="16" Grid.Row="15" Grid.Column="0"  Background="White" Click="ComprasButton_Click" />
-        <Button x:Name="VentasButton" Content="Ventas" FontSize="16" Grid.Row="14" Grid.Column="0"  Background="White" Click="VentasButton_Click" />
-        <Button x:Name="RolesButton" Content="Roles" FontSize="16" Grid.Row="17" Grid.Column="0"  Background="White" Click="RolesButton_Click" />
+        <Button x:Name="UsuarioButton" Content="Usuarios" FontSize="16" Grid.Row="4" Grid.Column="0"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"                
+                Click="UsuarioButton_Click"/>
+        <Button x:Name="EmpleadosButton" Content="Empleados" FontSize="16" Grid.Row="8" Grid.Column="0"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White" 
+                Click="EmpleadosButton_Click"/>
+        <Button x:Name="SuplidoresrButton" Content="Suplidores" FontSize="16" Grid.Row="10" Grid.Column="0" 
+                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White" 
+                 Click="SuplidoresrButton_Click" />
+        <Button x:Name="ProductosButton" Content="Productos" FontSize="16" Grid.Row="13" Grid.Column="0"
+                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White" 
+                Click="ProductosButton_Click"/>
+        <Button x:Name="ComprasButton" Content="Compras" FontSize="16" Grid.Row="15" Grid.Column="0"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="ComprasButton_Click" />
+        <Button x:Name="VentasButton" Content="Ventas" FontSize="16" Grid.Row="14" Grid.Column="0"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="VentasButton_Click" />
+        <Button x:Name="RolesButton" Content="Roles" FontSize="16" Grid.Row="17" Grid.Column="0"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="RolesButton_Click" />
 
         <Label Content="Consultas" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="2" FontSize="16" FontWeight="Bold"/>
-        <Button x:Name="ConsultarUsuarioButton"  Content="Consultas Usuarios" FontSize="16"  Grid.Row="4" Grid.Column="2"  Background="White" Click="ConsultarUsuarioButton_Click" />
-        <Button x:Name="ConsultarEmpleadosButton"  Content="Consultas Empleados" FontSize="16" Grid.Row="8" Grid.Column="2" Background="White" Click="ConsultarEmpleadosButton_Click" />
-        <Button x:Name="ConsultarSuplidoresrButton" Content="Consultas Suplidores" FontSize="16" Grid.Row="10" Grid.Column="2" Background="White" Click="ConsultarSuplidoresrButton_Click"/>
-        <Button x:Name="ConsultarProductosButton"  Content="Consultas Productos" FontSize="16" Grid.Row="13" Grid.Column="2"  Background="White" Click="ConsultarProductosButton_Click" />
-        <Button x:Name="ConsultarComprasButton"  Content="Consultas Compras" FontSize="16" Grid.Row="15" Grid.Column="2" Background="White" Click="ConsultarComprasButton_Click"  />
-        <Button x:Name="ConsultarVentasButton"  Content="Consultas Ventas" FontSize="16" Grid.Row="14" Grid.Column="2" Background="White" Click="ConsultarVentasButton_Click"  />
-        <Button x:Name="CerrarSecion"  Content=" Cerrar Sesión" FontSize="16" Grid.Row="17" Grid.Column="2" Background="LightGoldenrodYellow" Click="CerrarSecion_Click"  />
+        <Button x:Name="ConsultarUsuarioButton"  Content="Consultas Usuarios" FontSize="16"  Grid.Row="4" Grid.Column="2"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="ConsultarUsuarioButton_Click" />
+        <Button x:Name="ConsultarEmpleadosButton"  Content="Consultas Empleados" FontSize="16" Grid.Row="8" Grid.Column="2"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="ConsultarEmpleadosButton_Click" />
+        <Button x:Name="ConsultarSuplidoresrButton" Content="Consultas Suplidores" FontSize="16" Grid.Row="10" Grid.Column="2" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="ConsultarSuplidoresrButton_Click"/>
+        <Button x:Name="ConsultarProductosButton"  Content="Consultas Productos" FontSize="16" Grid.Row="13" Grid.Column="2"   Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="ConsultarProductosButton_Click" />
+        <Button x:Name="ConsultarComprasButton"  Content="Consultas Compras" FontSize="16" Grid.Row="15" Grid.Column="2"  Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="ConsultarComprasButton_Click"  />
+        <Button x:Name="ConsultarVentasButton"  Content="Consultas Ventas" FontSize="16" Grid.Row="14" Grid.Column="2" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="LightSeaGreen" Foreground="White"  Click="ConsultarVentasButton_Click"  />
+        <Button x:Name="CerrarSecion"  Content=" Cerrar Sesión" FontSize="16" Grid.Row="16" 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="SeaGreen" Foreground="White"
+                Click="CerrarSecion_Click" Grid.ColumnSpan="3" Margin="155,46,165,-48"  />
         <TextBox x:Name="UsuarioActivoTextBox" Grid.Column="2" Margin="0,1,0,62" IsReadOnly="True" Foreground="SaddleBrown" BorderBrush="Red"></TextBox>
     </Grid>
 </Window>

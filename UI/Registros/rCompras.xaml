@@ -13,7 +13,7 @@
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <Label Content="Compra Id:" Width="81" Margin="0,0,5,0" FontSize="14" Padding="4"/>
                 <TextBox x:Name="CompraIdTextBox" Width="100"  HorizontalAlignment="Left" Height="20" Margin="0,0,0,0"  />
-                <Button x:Name="BuscarBoton"  Click="BuscarBoton_Click" Width="73"  HorizontalAlignment="Left" Margin="5,0">
+                <Button x:Name="BuscarBoton"  Click="BuscarBoton_Click" Width="106" Margin="5,0" Background="LightSeaGreen" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/buscar (1).png"  Width="19" />
                         <TextBlock Text="Buscar" Margin="0,0,10,0" FontSize="15" Padding="4"/>
@@ -68,11 +68,10 @@
                             <Label Content="Cantidad" FontSize="12" Padding="-1" Margin="6,0,0,0"/>
                             <TextBox x:Name="CantidadTextBox" FontSize="20" Padding="-1" Margin="6,0,0,0"/>
                         </StackPanel>
-
-                        <Button x:Name="AgregarBoton" Height="26" Width="116" Margin="6,15,0,0" Click="AgregarBoton_Click">
+                        <Button x:Name="AgregarBoton" Height="30" Width="126"  Background="LightSeaGreen" Click="AgregarBoton_Click">
                             <StackPanel Orientation="Horizontal"  >
-                                <Image Source="/Resources/file-add.png" Margin="-8,0,5,0"/>
-                                <Label Content="Agregar" FontSize="17" Padding="-1" Width="60" Margin="4,0,0,0"/>
+                                <Image Source="/Resources/file-add.png" Width="33" Margin="-8,0,5,0"/>
+                                <Label Content="Agregar" FontSize="17" Padding="-1" Width="76" Height="23"  Foreground="White" />
                             </StackPanel>
                         </Button>
 
@@ -104,7 +103,7 @@
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Width="326" Height="30">
 
                     <!--Nuevo-->
-                    <Button x:Name="NuevoBoton" Margin="10,0" Width="90" Height="28"  Click="NuevoBoton_Click">
+                    <Button x:Name="NuevoBoton" Margin="10,0" Width="107" Height="28"  Click="NuevoBoton_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Resources/file-add.png" />
                             <Label Content="Nuevo"/>
@@ -112,18 +111,18 @@
                     </Button>
 
                     <!--Guardar-->
-                    <Button x:Name="GuardarBoton" Margin="10,0" Width="90" Height="28"  Click="GuardarBoton_Click">
+                    <Button x:Name="GuardarBoton" Margin="10,0" Width="109" Height="28"  Click="GuardarBoton_Click">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Resources/disco (1).png" />
-                            <Label Content="Guardar"/>
+                            <Image Source="/Resources/disco (1).png" Width="20"/>
+                            <Label Content="Guardar" Width="60"/>
                         </StackPanel>
                     </Button>
 
                     <!--Eliminar-->
-                    <Button x:Name="EliminarBoton" Margin="10,0" Width="83" Height="28"  Click="EliminarBoton_Click">
+                    <Button x:Name="EliminarBoton" Width="109" Height="32" Background="LightSeaGreen" Click="EliminarBoton_Click">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Resources/trash.png" />
-                            <Label Content="Eliminar"/>
+                            <Image Source="/Resources/trash.png" Width="20" />
+                            <Label Content="Eliminar" Width="77"/>
                         </StackPanel>
                     </Button>
 
