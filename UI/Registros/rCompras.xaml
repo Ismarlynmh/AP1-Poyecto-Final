@@ -103,7 +103,7 @@
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Width="326" Height="30">
 
                     <!--Nuevo-->
-                    <Button x:Name="NuevoBoton" Margin="10,0" Width="107" Height="28"  Click="NuevoBoton_Click">
+                    <Button x:Name="NuevoBoton" Margin="10,0" Width="107" Height="31" Background="LightSeaGreen" Click="NuevoBoton_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Resources/file-add.png" />
                             <Label Content="Nuevo"/>
@@ -111,7 +111,7 @@
                     </Button>
 
                     <!--Guardar-->
-                    <Button x:Name="GuardarBoton" Margin="10,0" Width="109" Height="28"  Click="GuardarBoton_Click">
+                    <Button x:Name="GuardarBoton" Margin="10,0" Width="113" Height="34" Background="LightSeaGreen" Click="GuardarBoton_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Resources/disco (1).png" Width="20"/>
                             <Label Content="Guardar" Width="60"/>
@@ -119,7 +119,7 @@
                     </Button>
 
                     <!--Eliminar-->
-                    <Button x:Name="EliminarBoton" Width="109" Height="32" Background="LightSeaGreen" Click="EliminarBoton_Click">
+                    <Button x:Name="EliminarBoton" Width="109" Height="32" Background="LightSeaGreen"  Click="EliminarBoton_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Resources/trash.png" Width="20" />
                             <Label Content="Eliminar" Width="77"/>
