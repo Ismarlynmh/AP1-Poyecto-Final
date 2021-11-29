@@ -13,5 +13,10 @@ namespace AP1PoyectoFinal
     /// </summary>
     public partial class App : Application
     {
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("Lo sentimos ha ocurrido una excepcion, " + e.Exception.Message);
+            e.Handled = true;
+        }
     }
 }
