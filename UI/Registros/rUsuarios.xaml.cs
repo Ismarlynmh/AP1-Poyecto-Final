@@ -29,11 +29,12 @@ namespace AP1PoyectoFinal.UI.Registros
         {
             InitializeComponent();
             this.DataContext = usuario;
-            FechaIngresoDateTimePicker.SelectedDate = DateTime.Now; 
+            FechaIngresoDateTimePicker.SelectedDate = DateTime.Now;
             this.RolIdComboBox.ItemsSource = RolesBLL.GetList(x => true);
             this.RolIdComboBox.SelectedValuePath = "RolId";
             this.RolIdComboBox.DisplayMemberPath = "Descripcion";
         }
+        
         private void Actualizar()
         {
             this.DataContext = null;

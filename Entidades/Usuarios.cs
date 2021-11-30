@@ -45,5 +45,6 @@ namespace AP1PoyectoFinal.Entidades
 
         [ForeignKey("RolId")]
         public int RolId { get; internal set; }
+        public int UsuariosId { get; internal set; }
     }
 }
