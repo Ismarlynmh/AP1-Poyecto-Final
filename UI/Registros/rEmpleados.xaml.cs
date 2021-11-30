@@ -26,16 +26,12 @@ namespace AP1PoyectoFinal.UI.Registros
         private Empleados empleado;
         public rEmpleados()
         {
-            Empleados empleado = new Empleados();
+            empleado = new Empleados();
             InitializeComponent();
             this.DataContext = empleado;
             EmpleadoIdTextBox.Text = "0";
         }
-        private bool ExisteEnDB()
-        {
-            Empleados empleado = EmpleadosBLL.Buscar(Convert.ToInt32(EmpleadoIdTextBox.Text));
-            return (empleado != null);
-        }
+      
         private Boolean EmailValido(String email)
         {
             String expresion;
@@ -87,8 +83,6 @@ namespace AP1PoyectoFinal.UI.Registros
             FechaNacimientoDateTimePicker.SelectedDate = DateTime.Now;
             FechaIngresoDateTimePicker.SelectedDate = DateTime.Now;
 
-            Empleados empleado = new Empleados();
-            Actualizar();
         }
         private void LlenaCampo(Empleados empleados)
         {
@@ -185,22 +179,47 @@ namespace AP1PoyectoFinal.UI.Registros
         }
         private void NuevoButtton_Click(object sender, RoutedEventArgs e)
         {
-
+            Limpiar();
         }
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (EmpleadosBLL.Guardar(empleado))
+            {
+                MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("No se logro guardar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void EmpleadoIdButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var registro = EmpleadosBLL.Buscar(empleado.EmpleadoId);
+            if (registro != null)
+            {
+                empleado = registro;
+                this.DataContext = empleado;
+            }
+            else
+            {
+                MessageBox.Show("No se encontro el registro", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (EmpleadosBLL.Eliminar(empleado.EmpleadoId))
+            {
+                MessageBox.Show("Elimando", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("No se logro eliminar", "Aviso", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

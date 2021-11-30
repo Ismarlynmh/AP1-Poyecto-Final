@@ -12,14 +12,21 @@ namespace AP1PoyectoFinal.BLL
 {
     public class EmpleadosBLL
     {
-        public static bool Guardar(Empleados empleados)
+        public static bool Guardar(Empleados empleado)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            if (!Existe(empleado.EmpleadoId))
+                return Insertar(empleado);
+            else
+                return Modificar(empleado);
+        }
+        private static bool Existe(int EmpleadoId)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                if (db.Empleados.Add(empleados) != null)
-                    paso = (db.SaveChanges() > 0);
+                ok = contexto.Empleados.Any(x => x.EmpleadoId == EmpleadoId);
             }
             catch (Exception)
             {
@@ -28,19 +35,21 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+
+            return ok;
         }
 
-        public static bool Modificar(Empleados empleados)
+        private static bool Insertar(Empleados empleado)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                db.Entry(empleados).State = EntityState.Modified;
-                paso = (db.SaveChanges() > 0);
+                contexto.Empleados.Add(empleado);
+                ok = contexto.SaveChanges() > 0;
             }
             catch (Exception)
             {
@@ -49,9 +58,32 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+
+            return ok;
+        }
+
+        public static bool Modificar(Empleados empleado)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
+            try
+            {
+                contexto.Entry(empleado).State = EntityState.Modified;
+                ok = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return ok;
         }
 
         public static bool Eliminar(int id)
@@ -76,13 +108,13 @@ namespace AP1PoyectoFinal.BLL
             return paso;
         }
 
-        public static Empleados Buscar(int id)
+        public static Empleados Buscar(int EmpleadoId)
         {
-            Empleados empleados = new Empleados();
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+            Empleados empleado;
             try
             {
-                empleados = db.Empleados.Find(id);
+                empleado = contexto.Empleados.Find(EmpleadoId);//Busca el registro en la base de datos.
             }
             catch (Exception)
             {
@@ -91,18 +123,19 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return empleados;
+
+            return empleado;
         }
 
-        public static List<Empleados> GetList(Expression<Func<Empleados, bool>> empleados)
+        public static List<Empleados> GetList(Expression<Func<Empleados, bool>> empleado)
         {
             List<Empleados> lista = new List<Empleados>();
             Contexto db = new Contexto();
             try
             {
-                lista = db.Empleados.Where(empleados).ToList();
+                lista = db.Empleados.Where(empleado).ToList();
             }
             catch (Exception)
             {

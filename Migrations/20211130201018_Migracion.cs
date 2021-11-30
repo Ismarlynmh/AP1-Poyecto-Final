@@ -60,7 +60,8 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     FechaIngreso = table.Column<DateTime>(type: "TEXT", nullable: false),
                     NombreUsuario = table.Column<string>(type: "TEXT", nullable: true),
                     Contrasena = table.Column<string>(type: "TEXT", nullable: true),
-                    RolId = table.Column<int>(type: "INTEGER", nullable: false)
+                    RolId = table.Column<int>(type: "INTEGER", nullable: false),
+                    UsuariosId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,17 +155,17 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     Sueldo = table.Column<decimal>(type: "TEXT", nullable: false),
                     FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaIngreso = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UsuariosId = table.Column<int>(type: "INTEGER", nullable: false)
+                    UsuariosUsuarioId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Empleados", x => x.EmpleadoId);
                     table.ForeignKey(
-                        name: "FK_Empleados_Usuarios_UsuariosId",
-                        column: x => x.UsuariosId,
+                        name: "FK_Empleados_Usuarios_UsuariosUsuarioId",
+                        column: x => x.UsuariosUsuarioId,
                         principalTable: "Usuarios",
                         principalColumn: "UsuarioId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,8 +214,8 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Apellidos", "Cedula", "Celular", "Contrasena", "Direccion", "Email", "FechaIngreso", "NombreUsuario", "Nombres", "RolId", "Sexo", "Telefono", "TipoUsuario" },
-                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 28, 19, 26, 43, 443, DateTimeKind.Local).AddTicks(1426), "Admin", "Admin", 0, "Femenino", "8888888888", "Administrador" });
+                columns: new[] { "UsuarioId", "Apellidos", "Cedula", "Celular", "Contrasena", "Direccion", "Email", "FechaIngreso", "NombreUsuario", "Nombres", "RolId", "Sexo", "Telefono", "TipoUsuario", "UsuariosId" },
+                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 30, 16, 10, 10, 724, DateTimeKind.Local).AddTicks(4817), "Admin", "Admin", 0, "Femenino", "8888888888", "Administrador", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Compras_UsuariosId",
@@ -227,9 +228,9 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                 column: "CompraId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Empleados_UsuariosId",
+                name: "IX_Empleados_UsuariosUsuarioId",
                 table: "Empleados",
-                column: "UsuariosId");
+                column: "UsuariosUsuarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_SuplidoresSuplidorId",

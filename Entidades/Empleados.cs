@@ -24,8 +24,6 @@ namespace AP1PoyectoFinal.Entidades
 		public DateTime FechaNacimiento { get; set; }
 		public DateTime FechaIngreso { get; set; }
 
-		[ForeignKey("Usuarios")]
-		public int UsuariosId { get; set; }
 		public Empleados()
 		{
 			EmpleadoId = 0;

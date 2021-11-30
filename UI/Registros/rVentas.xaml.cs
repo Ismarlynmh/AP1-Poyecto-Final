@@ -24,6 +24,7 @@ namespace AP1PoyectoFinal.UI.Registros
     public partial class rVentas : Window
     {
         Ventas venta = new Ventas();
+        private Productos producto;
         public List<VentasDetalle> Detalle { get; set; }
         List<Productos> lista = new List<Productos>();
         private decimal SubTotal;
@@ -39,6 +40,7 @@ namespace AP1PoyectoFinal.UI.Registros
         {
             InitializeComponent();
             this.DataContext = venta;
+            venta = new Ventas();
             this.Detalle = new List<VentasDetalle>();
             VentaIdTextBox.Text = "0";
             SubTotalTextBox.Text = "0";
@@ -65,34 +67,24 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void BuscarBoton_Click(object sender, RoutedEventArgs e)
         {
-            var Permisos = VentasBLL.Buscar(Utilidades.ToInt(VentaIdTextBox.Text));
-
-            if (Permisos != null)
+            var registro = VentasBLL.Buscar(venta.VentaId);
+            if (registro != null)
             {
-                this.venta = Permisos;
+                venta = registro;
+                this.DataContext = venta;
             }
             else
             {
-                this.venta = new Ventas();
-                MessageBox.Show("Esta venta no existe", "No existe", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No se encontro el registro", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            this.DataContext = this.venta;
         }
 
         private void AgregarBoton_Click(object sender, RoutedEventArgs e)
         {
-            if (VentasDataGrid.ItemsSource != null)
+            var detalle = new VentasDetalle
             {
-                this.Detalle = (List<VentasDetalle>)VentasDataGrid.ItemsSource;
-            }
-
-            if (!ValidarProductosId(Convert.ToInt32(ProductoIdTextBox.Text)))
-            {
-                MessageBox.Show("Producto Id no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-
+                ProductoId = int.Parse(ProductoIdTextBox.ToString())
+            };
 
             this.Detalle.Add(new VentasDetalle
             {
@@ -144,9 +136,11 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void RemoverBoton_Click(object sender, RoutedEventArgs e)
         {
-            if (VentasDataGrid.Items.Count > 0 && VentasDataGrid.SelectedItem != null)
+            if (VentasDataGrid.SelectedIndex != -1)
             {
-                Detalle.RemoveAt(VentasDataGrid.SelectedIndex);
+                venta.Detalle.RemoveAt(VentasDataGrid.SelectedIndex);
+                VentasDetalle aux = (VentasDetalle)VentasDataGrid.SelectedItem;
+
                 RemoveFromSubTotal();
                 RemoveFromTotal();
                 Cargar();
@@ -160,18 +154,15 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void GuardarBoton_Click(object sender, RoutedEventArgs e)
         {
-            if (!Validar())
-                return;
-
-            var paso = VentasBLL.Guardar(this.venta);
-
-            if (paso)
+            if (VentasBLL.Guardar(venta))
             {
+                MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();
-                MessageBox.Show("Informacion almacenada correctamente!");
             }
             else
-                MessageBox.Show("La informacion no pudo ser almacenada correctamente.");
+            {
+                MessageBox.Show("No se logro guardar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private bool ValidarProductosId(int id)
         {
@@ -242,16 +233,14 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void EliminarBoton_Click(object sender, RoutedEventArgs e)
         {
-            Ventas existe = VentasBLL.Buscar(this.venta.VentaId);
-
-            if (VentasBLL.Eliminar(this.venta.VentaId))
+            if (VentasBLL.Eliminar(venta.VentaId))
             {
+                MessageBox.Show("Elimando", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();
-                MessageBox.Show("La venta ha sido eliminado con exito");
             }
             else
             {
-                MessageBox.Show("No fue posible eliminarlo");
+                MessageBox.Show("No se logro eliminar", "Aviso", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -312,45 +301,6 @@ namespace AP1PoyectoFinal.UI.Registros
             this.VentasDataGrid.ItemsSource = this.venta.Detalle;
             this.DataContext = null;
             this.DataContext = this.venta;
-        }
-
-        private Ventas LlenaClase()
-        {
-            Ventas ventas = new Ventas();
-            ventas.VentaId = int.Parse(VentaIdTextBox.Text);
-            ventas.FechaVenta = (DateTime)FechaVentaDateTimePicker.SelectedDate;
-            ventas.SubTotal = decimal.Parse(SubTotalTextBox.Text);
-            ventas.ITBIS = double.Parse(ITBISTextBox.Text);
-            ventas.Descuento = decimal.Parse(DescuentoTextBox.Text);
-            ventas.Total = decimal.Parse(TotalTextBox.Text);
-            ventas.Detalle = this.Detalle;
-
-            return ventas;
-        }
-
-        private void LlenaCampo(Ventas venta)
-        {
-            VentaIdTextBox.Text = Convert.ToString(venta.VentaId);
-            FechaVentaDateTimePicker.SelectedDate = venta.FechaVenta;
-            ITBISTextBox.Text = Convert.ToString(venta.ITBIS);
-            DescuentoTextBox.Text = Convert.ToString(venta.Descuento);
-
-
-            SubTotal = venta.SubTotal;
-            Total = venta.Total;
-            SubTotalTextBox.Text = Convert.ToString(venta.SubTotal);
-            TotalTextBox.Text = Convert.ToString(venta.Total);
-
-            this.Detalle = venta.Detalle;
-            Cargar();
-
-        }
-
-
-        private void Actualizar()
-        {
-            this.DataContext = null;
-            this.DataContext = venta;
         }
     }
 }

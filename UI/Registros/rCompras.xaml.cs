@@ -41,6 +41,7 @@ namespace AP1PoyectoFinal.UI.Registros
         public rCompras()
         {
             InitializeComponent();
+            compra = new Compras();
             CompraIdTextBox.Text = "0";
             SuplidorIdTextBox.Text = "0";
             SubTotalTextBox.Text = "0";
@@ -122,51 +123,11 @@ namespace AP1PoyectoFinal.UI.Registros
             Actualizar();
         }
 
-        private bool ExisteEnDB()
-        {
-            Compras compra = ComprasBLL.Buscar(Convert.ToInt32(CompraIdTextBox.Text));
-            return (compra != null);
-        }
-
         private void CargarGrid()
         {
             CompraDetalleDataGrid.ItemsSource = null;
             CompraDetalleDataGrid.ItemsSource = this.Detalle;
         }
-
-        private Compras LlenaClase()
-        {
-            Compras compras = new Compras();
-            compras.CompraId = int.Parse(CompraIdTextBox.Text);
-            compras.SuplidorId = int.Parse(SuplidorIdTextBox.Text);
-            compras.FechaDeCompra = (DateTime)FechaDeCompraTimePicker.SelectedDate;
-            compras.SubTotal = decimal.Parse(SubTotalTextBox.Text);
-            compras.ITBIS = double.Parse(ITBISTextBox.Text);
-            compras.Descuento = decimal.Parse(DescuentoTextBox.Text);
-            compras.Total = decimal.Parse(TotalTextBox.Text);
-            compras.Detalle = this.Detalle;
-
-            return compras;
-        }
-
-        private void LlenaCampo(Compras compra)
-        {
-            CompraIdTextBox.Text = Convert.ToString(compra.CompraId);
-            SuplidorIdTextBox.Text = Convert.ToString(compra.SuplidorId);
-            FechaDeCompraTimePicker.SelectedDate = compra.FechaDeCompra;
-            ITBISTextBox.Text = Convert.ToString(compra.ITBIS);
-            DescuentoTextBox.Text = Convert.ToString(compra.Descuento);
-
-            SubTotal = compra.SubTotal;
-            Total = compra.Total;
-            SubTotalTextBox.Text = Convert.ToString(compra.SubTotal);
-            TotalTextBox.Text = Convert.ToString(compra.Total);
-
-            this.Detalle = compra.Detalle;
-            CargarGrid();
-
-        }
-
 
         private void Actualizar()
         {
@@ -245,19 +206,15 @@ namespace AP1PoyectoFinal.UI.Registros
         }
         private void BuscarBoton_Click(object sender, RoutedEventArgs e)
         {
-            int id;
-            Compras compra = new Compras();
-            int.TryParse(CompraIdTextBox.Text, out id);
-
-            compra = ComprasBLL.Buscar(id);
-
-            if (compra != null)
+            var registro = ComprasBLL.Buscar(compra.CompraId);
+            if (registro != null)
             {
-                LlenaCampo(compra);
+                compra = registro;
+                this.DataContext = compra;
             }
             else
             {
-                MessageBox.Show(" No encontrado !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No se encontro el registro", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -326,9 +283,10 @@ namespace AP1PoyectoFinal.UI.Registros
         }
         private void RemoverBoton_Click(object sender, RoutedEventArgs e)
         {
-            if (CompraDetalleDataGrid.Items.Count > 0 && CompraDetalleDataGrid.SelectedItem != null)
+            if (CompraDetalleDataGrid.SelectedIndex != -1)
             {
-                Detalle.RemoveAt(CompraDetalleDataGrid.SelectedIndex);
+                compra.Detalle.RemoveAt(CompraDetalleDataGrid.SelectedIndex);
+                ComprasDetalle aux = (ComprasDetalle)CompraDetalleDataGrid.SelectedItem;
                 RemoveFromSubTotal();
                 RemoveFromTotal();
                 CargarGrid();
@@ -343,68 +301,27 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void GuardarBoton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (ComprasBLL.Guardar(compra))
             {
-                bool paso = false;
-                Compras compra;
-
-                if (!Validar())
-                    return;
-                if (!ValidarSuplidorId(Convert.ToInt32(SuplidorIdTextBox.Text)))
-                {
-                    MessageBox.Show("Suplidor Id no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
-
-                compra = LlenaClase();
-
-                if (string.IsNullOrEmpty(CompraIdTextBox.Text) || CompraIdTextBox.Text == "0")
-                    paso = ComprasBLL.Guardar(compra);
-                else
-                {
-                    if (!ExisteEnDB())
-                    {
-                        MessageBox.Show("Persona No Encontrada", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-                        return;
-                    }
-                    paso = ComprasBLL.Modificar(compra);
-                }
-                if (paso)
-                {
-                    MessageBox.Show("Guardado!!", "EXITO", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show(" No guardado!!", "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                }
+                MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
             }
-            catch
+            else
             {
-                MessageBox.Show(" Id no valido!!", "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                MessageBox.Show("No se logro guardar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void EliminarBoton_Click(object sender, RoutedEventArgs e)
         {
-            int id;
-            int.TryParse(CompraIdTextBox.Text, out id);
-
-            try
+            if (ComprasBLL.Eliminar(compra.CompraId))
             {
-                if (ComprasBLL.Eliminar(id))
-                {
-                    MessageBox.Show("Eliminado con exito!!!", "ELiminado", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show(" No eliminado !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                MessageBox.Show("Elimando", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
             }
-            catch
+            else
             {
-                MessageBox.Show(" No encontrado !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("No se logro eliminar", "Aviso", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

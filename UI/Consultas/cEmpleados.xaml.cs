@@ -92,11 +92,6 @@ namespace AP1PoyectoFinal.UI.Consultas
                         listado = EmpleadosBLL.GetList(x => x.FechaIngreso.Date >= fechaI.Date && x.FechaIngreso.Date <= fechaI.Date);
                         break;
 
-                    case 13:
-                        int idU;
-                        idU = int.Parse(CriterioTextBox.Text);
-                        listado = EmpleadosBLL.GetList(x => x.UsuariosId == idU);
-                        break;
                 }
             }
             else if (FiltrarComboBox.SelectedIndex == 11)

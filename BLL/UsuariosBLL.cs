@@ -17,12 +17,19 @@ namespace AP1PoyectoFinal.BLL
     {
         public static bool Guardar(Usuarios usuarios)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            if (!Existe(usuarios.UsuariosId))
+                return Insertar(usuarios);
+            else
+                return Modificar(usuarios);
+        }
+        private static bool Existe(int UsuariosId)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                if (db.Usuarios.Add(usuarios) != null)
-                    paso = (db.SaveChanges() > 0);
+                ok = contexto.Usuarios.Any(x => x.UsuariosId == UsuariosId);
             }
             catch (Exception)
             {
@@ -31,19 +38,43 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+
+            return ok;
+        }
+        private static bool Insertar(Usuarios usuarios)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
+            try
+            {
+                contexto.Usuarios.Add(usuarios);
+                ok = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return ok;
         }
 
         public static bool Modificar(Usuarios usuarios)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                db.Entry(usuarios).State = EntityState.Modified;
-                paso = (db.SaveChanges() > 0);
+                contexto.Entry(usuarios).State = EntityState.Modified;
+                ok = contexto.SaveChanges() > 0;
             }
             catch (Exception)
             {
@@ -52,20 +83,24 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+            return ok;
         }
 
-        public static bool Eliminar(int id)
+        public static bool Eliminar(int UsuariosId)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                var eliminar = db.Usuarios.Find(id);
-                db.Entry(eliminar).State = EntityState.Deleted;
-                paso = (db.SaveChanges() > 0);
+                var item = Buscar(UsuariosId);
+                if (item != null)
+                {
+                    contexto.Usuarios.Remove(item);
+                    ok = contexto.SaveChanges() > 0;
+                }
             }
             catch (Exception)
             {
@@ -74,9 +109,10 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+
+            return ok;
         }
 
         public static Usuarios Buscar(int id)
@@ -102,10 +138,10 @@ namespace AP1PoyectoFinal.BLL
         public static List<Usuarios> GetList(Expression<Func<Usuarios, bool>> usuario)
         {
             List<Usuarios> lista = new List<Usuarios>();
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
             try
             {
-                lista = db.Usuarios.Where(usuario).ToList();
+                lista = contexto.Usuarios.Where(usuario).ToList();
             }
             catch (Exception)
             {
@@ -114,7 +150,7 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
             return lista;
         }

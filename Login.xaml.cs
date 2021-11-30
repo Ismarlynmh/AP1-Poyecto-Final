@@ -35,7 +35,7 @@ namespace AP1PoyectoFinal
             lista = UsuariosBLL.GetList(p => true);
             bool paso = false;
 
-            //Si existe usuario en base de datos
+            //Si existe usuarios en base de datos
             foreach (var item in lista)
             {
                 if ((item.NombreUsuario == NombreDeUsuarioTextBox.Text) && (item.Contrasena == ContraseñaTextBox.Password))
@@ -50,7 +50,7 @@ namespace AP1PoyectoFinal
             }
             if (paso == false)
             {
-                MessageBox.Show("Nombre de usuario o Contraseña incorrecto", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Nombre de usuarios o Contraseña incorrecto", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
                 NombreDeUsuarioTextBox.Text = string.Empty;
                 ContraseñaTextBox.Password = string.Empty;
                 NombreDeUsuarioTextBox.Focus();

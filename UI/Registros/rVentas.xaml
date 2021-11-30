@@ -40,7 +40,7 @@
             </StackPanel>
 
             <!---Grupo agregar-->
-            <GroupBox Height="270" Header="Detalle de compras" FontSize="13" BorderBrush="Black" Margin="0,15,0,15" Width="900">
+            <GroupBox Height="270" Header="Detalle de ventas" FontSize="13" BorderBrush="Black" Margin="0,15,0,15" Width="900">
                 <StackPanel>
                     <StackPanel Height="43" Orientation="Horizontal" Width="800">
                         <StackPanel Height="53" Width="136" Orientation="Vertical">

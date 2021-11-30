@@ -114,12 +114,12 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UsuariosId")
+                    b.Property<int?>("UsuariosUsuarioId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("EmpleadoId");
 
-                    b.HasIndex("UsuariosId");
+                    b.HasIndex("UsuariosUsuarioId");
 
                     b.ToTable("Empleados");
                 });
@@ -267,6 +267,9 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.Property<string>("TipoUsuario")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UsuariosId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
@@ -281,13 +284,14 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                             Contrasena = "Admin",
                             Direccion = "SFM",
                             Email = "admin123@gmail.com",
-                            FechaIngreso = new DateTime(2021, 11, 28, 19, 26, 43, 443, DateTimeKind.Local).AddTicks(1426),
+                            FechaIngreso = new DateTime(2021, 11, 30, 16, 10, 10, 724, DateTimeKind.Local).AddTicks(4817),
                             NombreUsuario = "Admin",
                             Nombres = "Admin",
                             RolId = 0,
                             Sexo = "Femenino",
                             Telefono = "8888888888",
-                            TipoUsuario = "Administrador"
+                            TipoUsuario = "Administrador",
+                            UsuariosId = 0
                         });
                 });
 
@@ -364,9 +368,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                 {
                     b.HasOne("AP1PoyectoFinal.Entidades.Usuarios", null)
                         .WithMany("Empleados")
-                        .HasForeignKey("UsuariosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsuariosUsuarioId");
                 });
 
             modelBuilder.Entity("AP1PoyectoFinal.Entidades.Productos", b =>

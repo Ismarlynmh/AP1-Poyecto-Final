@@ -14,12 +14,20 @@ namespace AP1PoyectoFinal.BLL
     {
         public static bool Guardar(Productos producto)
         {
-            bool paso = false;
+
+            if (!Existe(producto.ProductoId))
+                return Insertar(producto);
+            else
+                return Modificar(producto);
+        }
+        private static bool Existe(int ProductoId)
+        {
             Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                if (contexto.Productos.Add(producto) != null)
-                    paso = (contexto.SaveChanges() > 0);
+                ok = contexto.Productos.Any(x => x.ProductoId == ProductoId);
             }
             catch (Exception)
             {
@@ -30,17 +38,41 @@ namespace AP1PoyectoFinal.BLL
             {
                 contexto.Dispose();
             }
-            return paso;
+
+            return ok;
         }
 
+        private static bool Insertar(Productos producto)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
+            try
+            {
+                contexto.Productos.Add(producto);
+                ok = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return ok;
+        }
         public static bool Modificar(Productos producto)
         {
-            bool paso = false;
             Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
                 contexto.Entry(producto).State = EntityState.Modified;
-                paso = (contexto.SaveChanges() > 0);
+                ok = contexto.SaveChanges() > 0;
             }
             catch (Exception)
             {
@@ -51,18 +83,18 @@ namespace AP1PoyectoFinal.BLL
             {
                 contexto.Dispose();
             }
-            return paso;
+            return ok;
         }
 
-        public static bool Eliminar(int id)
+        public static bool Eliminar(int ProductoId)
         {
             bool paso = false;
-            Contexto contexto = new Contexto();
+            Contexto db = new Contexto();
             try
             {
-                var eliminar = contexto.Productos.Find(id);
-                contexto.Entry(eliminar).State = EntityState.Deleted;
-                paso = (contexto.SaveChanges() > 0);
+                var eliminar = db.Suplidores.Find(ProductoId);
+                db.Entry(eliminar).State = EntityState.Deleted;
+                paso = (db.SaveChanges() > 0);
             }
             catch (Exception)
             {
@@ -71,18 +103,18 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                contexto.Dispose();
+                db.Dispose();
             }
             return paso;
         }
 
-        public static Productos Buscar(int id)
+        public static Productos Buscar(int ProductoId)
         {
-            Productos producto = new Productos();
             Contexto contexto = new Contexto();
+            Productos producto;
             try
             {
-                producto = contexto.Productos.Find(id);
+                producto = contexto.Productos.Find(ProductoId);//Busca el registro en la base de datos.
             }
             catch (Exception)
             {
@@ -93,6 +125,7 @@ namespace AP1PoyectoFinal.BLL
             {
                 contexto.Dispose();
             }
+
             return producto;
         }
 

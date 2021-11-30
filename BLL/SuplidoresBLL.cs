@@ -12,14 +12,21 @@ namespace AP1PoyectoFinal.BLL
 {
     public class SuplidoresBLL
     {
-        public static bool Guardar(Suplidores suplidores)
+        public static bool Guardar(Suplidores suplidor)
         {
-            bool paso = false;
+            if (!Existe(suplidor.SuplidorId))
+                return Insertar(suplidor);
+            else
+                return Modificar(suplidor);
+        }
+        private static bool Existe(int SuplidorId)
+        {
             Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                if (contexto.Suplidores.Add(suplidores) != null)
-                    paso = (contexto.SaveChanges() > 0);
+                ok = contexto.Suplidores.Any(x => x.SuplidorId == SuplidorId);
             }
             catch (Exception)
             {
@@ -29,18 +36,84 @@ namespace AP1PoyectoFinal.BLL
             finally
             {
                 contexto.Dispose();
+            }
+
+            return ok;
+        }
+
+        private static bool Insertar(Suplidores suplidor)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
+            try
+            {
+                contexto.Suplidores.Add(suplidor);
+                ok = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return ok;
+        }
+        public static bool Modificar(Suplidores suplidor)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
+            try
+            {
+                contexto.Entry(suplidor).State = EntityState.Modified;
+                ok = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return ok;
+        }
+
+        public static bool Eliminar(int SuplidorId)
+        {
+            bool paso = false;
+            Contexto db = new Contexto();
+            try
+            {
+                var eliminar = db.Suplidores.Find(SuplidorId);
+                db.Entry(eliminar).State = EntityState.Deleted;
+                paso = (db.SaveChanges() > 0);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                db.Dispose();
             }
             return paso;
         }
 
-        public static bool Modificar(Suplidores suplidores)
+        public static Suplidores Buscar(int SuplidorId)
         {
-            bool paso = false;
             Contexto contexto = new Contexto();
+            Suplidores suplidor;
             try
             {
-                contexto.Entry(suplidores).State = EntityState.Modified;
-                paso = (contexto.SaveChanges() > 0);
+                suplidor = contexto.Suplidores.Find(SuplidorId);//Busca el registro en la base de datos.
             }
             catch (Exception)
             {
@@ -51,58 +124,17 @@ namespace AP1PoyectoFinal.BLL
             {
                 contexto.Dispose();
             }
-            return paso;
+
+            return suplidor;
         }
 
-        public static bool Eliminar(int id)
-        {
-            bool paso = false;
-            Contexto contexto = new Contexto();
-            try
-            {
-                var eliminar = contexto.Suplidores.Find(id);
-                contexto.Entry(eliminar).State = EntityState.Deleted;
-                paso = (contexto.SaveChanges() > 0);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return paso;
-        }
-
-        public static Suplidores Buscar(int id)
-        {
-            Suplidores suplidores = new Suplidores();
-            Contexto contexto = new Contexto();
-            try
-            {
-                suplidores = contexto.Suplidores.Find(id);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return suplidores;
-        }
-
-        public static List<Suplidores> GetList(Expression<Func<Suplidores, bool>> suplidores)
+        public static List<Suplidores> GetList(Expression<Func<Suplidores, bool>> suplidor)
         {
             List<Suplidores> lista = new List<Suplidores>();
             Contexto contexto = new Contexto();
             try
             {
-                lista = contexto.Suplidores.Where(suplidores).ToList();
+                lista = contexto.Suplidores.Where(suplidor).ToList();
             }
             catch (Exception)
             {

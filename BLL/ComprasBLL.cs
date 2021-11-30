@@ -14,12 +14,19 @@ namespace AP1PoyectoFinal.BLL
     {
         public static bool Guardar(Compras compra)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            if (!Existe(compra.CompraId))
+                return Insertar(compra);
+            else
+                return Modificar(compra);
+        }
+        private static bool Existe(int CompraId)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                if (db.Compras.Add(compra) != null)
-                    paso = (db.SaveChanges() > 0);
+                ok = contexto.Compras.Any(x => x.CompraId == CompraId);
             }
             catch (Exception)
             {
@@ -28,25 +35,52 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+
+            return ok;
         }
 
-        public static bool Modificar(Compras compra)
+        private static bool Insertar(Compras compra)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-
-                db.Database.ExecuteSqlRaw($"Delete FROM ComprasDetalle where CompraId = {compra.CompraId}");
                 foreach (var item in compra.Detalle)
                 {
-                    db.Entry(item).State = EntityState.Added;
+                    contexto.Entry(item.ProductoId).State = EntityState.Modified;
                 }
-                db.Entry(compra).State = EntityState.Modified;
-                paso = (db.SaveChanges() > 0);
+                contexto.Compras.Add(compra);
+                ok = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return ok;
+        }
+        public static bool Modificar(Compras compra)
+        {
+            bool ok = false;
+            Contexto contexto = new Contexto();
+            try
+            {
+
+                contexto.Database.ExecuteSqlRaw($"Delete FROM ComprasDetalle where CompraId = {compra.CompraId}");
+                foreach (var item in compra.Detalle)
+                {
+                    contexto.Entry(item).State = EntityState.Added;
+                }
+                contexto.Entry(compra).State = EntityState.Modified;
+                ok = (contexto.SaveChanges() > 0);
 
             }
             catch (Exception)
@@ -56,21 +90,24 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+            return ok;
         }
 
-        public static bool Eliminar(int id)
+        public static bool Eliminar(int CompraId)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+            bool ok = false;
 
             try
             {
-                var eliminar = db.Compras.Find(id);
-                db.Entry(eliminar).State = EntityState.Deleted;
-                paso = db.SaveChanges() > 0;
+                var item = Buscar(CompraId);
+                if (item != null)
+                {
+                    contexto.Compras.Remove(item);
+                    ok = contexto.SaveChanges() > 0;
+                }
             }
             catch (Exception)
             {
@@ -79,20 +116,23 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+
+            return ok;
         }
 
-        public static Compras Buscar(int id)
+        public static Compras Buscar(int CompraId)
         {
-            Compras venta = new Compras();
-            Contexto db = new Contexto();
-
+            Contexto contexto = new Contexto();
+            Compras compra;
             try
             {
-                venta = db.Compras.Where(x => x.CompraId == id).
-                     Include(y => y.Detalle).SingleOrDefault();
+                compra = contexto.Compras
+                    .Where(x => x.CompraId == CompraId)
+                    .Include(d => d.Detalle)
+                    .ThenInclude(d => d.ProductoId)
+                    .SingleOrDefault();//Busca el registro en la base de datos.
             }
             catch (Exception)
             {
@@ -101,18 +141,20 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return venta;
+
+            return compra;
         }
 
         public static List<Compras> GetList(Expression<Func<Compras, bool>> compra)
         {
             List<Compras> lista = new List<Compras>();
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+
             try
             {
-                lista = db.Compras.Where(compra).ToList();
+                lista = contexto.Compras.Where(compra).Include(X => X.Detalle).ThenInclude(d => d.ProductoId).ToList();
             }
             catch (Exception)
             {
@@ -121,8 +163,9 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
+
             return lista;
         }
     }

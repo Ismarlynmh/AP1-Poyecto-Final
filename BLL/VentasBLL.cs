@@ -14,12 +14,20 @@ namespace AP1PoyectoFinal.BLL
     {
         public static bool Guardar(Ventas venta)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            if (!Existe(venta.VentaId))
+                return Insertar(venta);
+            else
+                return Modificar(venta);
+        }
+
+        private static bool Existe(int VentaId)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
             try
             {
-                if (db.Ventas.Add(venta) != null)
-                    paso = (db.SaveChanges() > 0);
+                ok = contexto.Ventas.Any(x => x.VentaId == VentaId);
             }
             catch (Exception)
             {
@@ -28,11 +36,38 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+
+            return ok;
         }
 
+        private static bool Insertar(Ventas venta)
+        {
+            Contexto contexto = new Contexto();
+            bool ok = false;
+
+            try
+            {
+                foreach (var item in venta.Detalle)
+                {
+                    contexto.Entry(item.ProductoId).State = EntityState.Modified;
+                }
+                contexto.Ventas.Add(venta);
+                ok = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return ok;
+        }
         public static bool Modificar(Ventas venta)
         {
             bool paso = false;
@@ -60,16 +95,19 @@ namespace AP1PoyectoFinal.BLL
             return paso;
         }
 
-        public static bool Eliminar(int id)
+        public static bool Eliminar(int VentaId)
         {
-            bool paso = false;
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+            bool ok = false;
 
             try
             {
-                var eliminar = db.Ventas.Find(id);
-                db.Entry(eliminar).State = EntityState.Deleted;
-                paso = (db.SaveChanges() > 0);
+                var item = Buscar(VentaId);
+                if (item != null)
+                {
+                    contexto.Ventas.Remove(item);
+                    ok = contexto.SaveChanges() > 0;
+                }
             }
             catch (Exception)
             {
@@ -78,20 +116,23 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
-            return paso;
+
+            return ok;
         }
 
-        public static Ventas Buscar(int id)
+        public static Ventas Buscar(int VentaId)
         {
-            Ventas venta = new Ventas();
-            Contexto db = new Contexto();
-
+            Contexto contexto = new Contexto();
+            Ventas venta;
             try
             {
-                venta = db.Ventas.Where(x => x.VentaId == id).
-                     Include(y => y.Detalle).SingleOrDefault();
+                venta = contexto.Ventas
+                    .Where(x => x.VentaId == VentaId)
+                    .Include(d => d.Detalle)
+                    .ThenInclude(d => d.ProductoId)
+                    .SingleOrDefault();//Busca el registro en la base de datos.
             }
             catch (Exception)
             {
@@ -100,18 +141,20 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
+
             return venta;
         }
 
         public static List<Ventas> GetList(Expression<Func<Ventas, bool>> venta)
         {
             List<Ventas> lista = new List<Ventas>();
-            Contexto db = new Contexto();
+            Contexto contexto = new Contexto();
+
             try
             {
-                lista = db.Ventas.Where(venta).ToList();
+                lista = contexto.Ventas.Where(venta).Include(X => X.Detalle).ThenInclude(d => d.ProductoId).ToList();
             }
             catch (Exception)
             {
@@ -120,7 +163,7 @@ namespace AP1PoyectoFinal.BLL
             }
             finally
             {
-                db.Dispose();
+                contexto.Dispose();
             }
 
             return lista;
