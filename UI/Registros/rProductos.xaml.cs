@@ -23,11 +23,12 @@ namespace AP1PoyectoFinal.UI.Registros
     /// </summary>
     public partial class rProductos : Window
     {
-        Productos producto = new Productos();
+        private Productos producto;
         List<Suplidores> lista = new List<Suplidores>();
         public rProductos()
         {
             InitializeComponent();
+            producto = new Productos();
             FechaIngresoDatePicker.SelectedDate = DateTime.Now;
             ProductoIdTextBox.Text = "0";
             PrecioCompraTextBox.Text = "0";
@@ -38,41 +39,9 @@ namespace AP1PoyectoFinal.UI.Registros
 
             private void Limpiar()
         {
-
-            ProductoIdTextBox.Text = "0";
-            NombreProductoTextBox.Clear();
-            MarcaProductoTextBox.Clear();
-            InventarioTextBox.Clear();
-            PrecioVentaTextBox.Text = "0";
-            PrecioCompraTextBox.Text = "0";
-            FechaIngresoDatePicker.SelectedDate = DateTime.Now;
-            SuplidorIdTextBox.Text = "0";
-
-             Productos producto = new Productos();
-            Actualizar();
-        }
-        private void LlenaCampo(Productos productos)
-        {
-            ProductoIdTextBox.Text = Convert.ToString(productos.ProductoId);
-            NombreProductoTextBox.Text = productos.NombreProducto;
-            MarcaProductoTextBox.Text = productos.MarcaProducto;
-            InventarioTextBox.Text = Convert.ToString(productos.Inventario);
-            PrecioCompraTextBox.Text = Convert.ToString(productos.PrecioDeCompra);
-            PrecioVentaTextBox.Text = Convert.ToString(productos.PrecioDeVenta);
-            SuplidorIdTextBox.Text = Convert.ToString(productos.SuplidorId);
-        }
-        private bool ExisteEnDB()
-        {
-            Productos productos = ProductosBLL.Buscar(Convert.ToInt32(ProductoIdTextBox.Text));
-            return (productos != null);
-        }
-
-        private void Actualizar()
-        {
-            this.DataContext = null;
+            producto = new Productos();
             this.DataContext = producto;
         }
-
         private bool Validar()
         {
             bool paso = true;
@@ -131,87 +100,45 @@ namespace AP1PoyectoFinal.UI.Registros
         }
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            var registro = ProductosBLL.Buscar(producto.ProductoId);
+            if (registro != null)
             {
-                int id;
-                Productos products = new Productos();
-                int.TryParse(ProductoIdTextBox.Text, out id);
-                Limpiar();
-                products = ProductosBLL.Buscar(id);
-
-                if (products != null)
-                {
-                    LlenaCampo(products);
-                }
-                else
-                {
-                    MessageBox.Show(" No Encontrado !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                producto = registro;
+                this.DataContext = producto;
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Error en base de datos intente de nuevo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No se encontro el registro", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (!Validar())
             {
-                bool paso = false;
-
-                if (!Validar())
-                    return;
-
-                if (String.IsNullOrEmpty(ProductoIdTextBox.Text) || ProductoIdTextBox.Text == "0")
-                    paso = ProductosBLL.Guardar(producto);
-                else
-                {
-                    if (!ExisteEnDB())
-                    {
-                        MessageBox.Show("No existe el cliente en la base de " +
-                            "datos", "Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
-                        return;
-                    }
-                    paso = ProductosBLL.Modificar(producto);
-                }
-
-                if (paso)
-                {
-                    MessageBox.Show("Guardado!!", "EXITO", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show(" No guardado!!", "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                }
+                return;
             }
-            catch
+            var ok = ProductosBLL.Guardar(producto); ;
+            if (ok)
             {
-                MessageBox.Show(" Usuario Id no valido!!", "Informacion", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("No se logro guardar", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (ProductosBLL.Eliminar(producto.ProductoId))
             {
-                int id;
-                int.TryParse(ProductoIdTextBox.Text, out id);
-
-                if (ProductosBLL.Eliminar(id))
-                {
-                    MessageBox.Show("Eliminado con exito!!!", "ELiminado", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show(" No eliminado !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                MessageBox.Show("Elimando", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
             }
-            catch
+            else
             {
-                MessageBox.Show(" No encontrado !!!", "Informacion", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("No se logro eliminar", "Aviso", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

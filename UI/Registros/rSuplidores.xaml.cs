@@ -60,16 +60,8 @@ namespace AP1PoyectoFinal.UI.Registros
         }
         private void Limpiar()
         {
-            SuplidorIdTextBox.Text = "0";
-            NombreSuplidorTextBox.Clear();
-            ApellidosTextBox.Clear();
-            NombreCompaniaTextBox.Clear();
-            DireccionTextBox.Clear();
-            TelefonoTextBox.Clear();
-            CelularTextBox.Clear();
-            EmailTextBox.Clear();
-            CiudadTextBox.Clear();
-            FechaIngresoDateTimePicker.SelectedDate = DateTime.Now;
+            suplidor = new Suplidores();
+            this.DataContext = suplidor;
         }
 
         private bool Validar()
@@ -156,7 +148,12 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (SuplidoresBLL.Guardar(suplidor))
+            if (!Validar())
+            {
+                return;
+            }
+            var ok = SuplidoresBLL.Guardar(suplidor); ;
+            if (ok)
             {
                 MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();

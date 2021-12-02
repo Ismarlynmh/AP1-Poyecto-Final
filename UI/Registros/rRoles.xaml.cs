@@ -25,6 +25,7 @@ namespace AP1PoyectoFinal.UI.Registros
         public rRoles()
         {
             InitializeComponent();
+            Rol = new Roles();
             this.DataContext = this.Rol = new Roles();
         }
         private bool Validar()

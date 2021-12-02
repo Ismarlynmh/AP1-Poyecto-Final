@@ -23,16 +23,6 @@ namespace AP1PoyectoFinal.UI.Consultas
     /// </summary>
     public partial class cVentas : Window
     {
-        public static int usuarioSiempreActivoId;
-        Usuarios usuario = new Usuarios();
-        public cVentas(int usuarioId)
-        {
-            InitializeComponent(); 
-            usuarioSiempreActivoId = usuarioId;
-            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
-
-        }
-
         public cVentas()
         {
             InitializeComponent();

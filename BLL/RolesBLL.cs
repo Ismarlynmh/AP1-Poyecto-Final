@@ -15,7 +15,7 @@ namespace AP1PoyectoFinal.BLL
     {
         public static bool Guardar(Roles Rol)
         {
-            if (!Existe(Rol.RolId))
+        if (!Existe(Rol.RolId))
                 return Insertar(Rol);
             else
                 return Modificar(Rol);
@@ -50,7 +50,7 @@ namespace AP1PoyectoFinal.BLL
 
             try
             {
-                contexto.Roles.Add(Rol);
+                if( contexto.Roles.Add(Rol) !=null)
                 ok = contexto.SaveChanges() > 0;
             }
             catch (Exception)
@@ -158,6 +158,5 @@ namespace AP1PoyectoFinal.BLL
 
             return lista;
         }
-        
     }
 }

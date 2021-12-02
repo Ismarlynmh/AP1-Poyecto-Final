@@ -79,6 +79,7 @@
         <Button x:Name="CerrarSecion"  Content=" Cerrar Sesión" FontSize="16" Grid.Row="16" 
                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="SeaGreen" Foreground="White"
                 Click="CerrarSecion_Click" Grid.ColumnSpan="3" Margin="155,46,165,-48"  />
-        <TextBox x:Name="UsuarioActivoTextBox" Grid.Column="2" Margin="0,1,0,62" IsReadOnly="True" Foreground="SaddleBrown" BorderBrush="Red"></TextBox>
+        <TextBox x:Name="UsuarioActivoTextBox" Grid.Column="2" Margin="0,1,0,62" IsReadOnly="True" Foreground="Red" BorderBrush="Red"></TextBox>
+
     </Grid>
 </Window>

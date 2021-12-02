@@ -17,19 +17,19 @@ namespace AP1PoyectoFinal.BLL
     {
         public static bool Guardar(Usuarios usuarios)
         {
-            if (!Existe(usuarios.UsuariosId))
+            if (!Existe(usuarios.UsuarioId))
                 return Insertar(usuarios);
             else
                 return Modificar(usuarios);
         }
-        private static bool Existe(int UsuariosId)
+        private static bool Existe(int UsuarioId)
         {
             Contexto contexto = new Contexto();
             bool ok = false;
 
             try
             {
-                ok = contexto.Usuarios.Any(x => x.UsuariosId == UsuariosId);
+                ok = contexto.Usuarios.Any(x => x.UsuarioId == UsuarioId);
             }
             catch (Exception)
             {
@@ -88,14 +88,14 @@ namespace AP1PoyectoFinal.BLL
             return ok;
         }
 
-        public static bool Eliminar(int UsuariosId)
+        public static bool Eliminar(int UsuarioId)
         {
             Contexto contexto = new Contexto();
             bool ok = false;
 
             try
             {
-                var item = Buscar(UsuariosId);
+                var item = Buscar(UsuarioId);
                 if (item != null)
                 {
                     contexto.Usuarios.Remove(item);

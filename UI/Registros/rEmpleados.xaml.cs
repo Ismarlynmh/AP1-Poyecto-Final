@@ -62,42 +62,11 @@ namespace AP1PoyectoFinal.UI.Registros
             return Regex.Match(cedula,
                 @"^([\+]?1[-]?|[0])?[1-9][0-9]{10}$").Success;
         }
-        private void Actualizar()
-        {
-            this.DataContext = null;
-            this.DataContext = empleado;
-        }
 
         private void Limpiar()
         {
-            EmpleadoIdTextBox.Text = "0";
-            NombresTextBox.Clear();
-            ApellidosTextBox.Clear();
-            CedulaTextBox.Clear();
-            DireccionTextBox.Clear();
-            TelefonoTextBox.Clear();
-            CelularTextBox.Clear();
-            EmailTextBox.Clear();
-            CargoTextBox.Clear();
-            SueldoTextBox.Text = "0";
-            FechaNacimientoDateTimePicker.SelectedDate = DateTime.Now;
-            FechaIngresoDateTimePicker.SelectedDate = DateTime.Now;
-
-        }
-        private void LlenaCampo(Empleados empleados)
-        {
-            EmpleadoIdTextBox.Text = Convert.ToString(empleados.EmpleadoId);
-            NombresTextBox.Text = empleados.Nombres;
-            ApellidosTextBox.Text = empleados.Apellidos;
-            CedulaTextBox.Text = empleados.Cedula;
-            DireccionTextBox.Text = empleados.Direccion;
-            TelefonoTextBox.Text = empleados.Telefono;
-            CelularTextBox.Text = empleados.Celular;
-            EmailTextBox.Text = empleados.Email;
-            CargoTextBox.Text = empleados.Cargo;
-            SueldoTextBox.Text = Convert.ToString(empleados.Sueldo);
-            FechaNacimientoDateTimePicker.SelectedDate = empleados.FechaNacimiento;
-            FechaIngresoDateTimePicker.SelectedDate = empleados.FechaIngreso;
+            empleado = new Empleados();
+            this.DataContext = empleado;
         }
         private bool Validar()
         {
@@ -184,7 +153,14 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (EmpleadosBLL.Guardar(empleado))
+
+            if (!Validar())
+            {
+                return;
+            }
+            var ok = EmpleadosBLL.Guardar(empleado); ;
+            if (ok)
+                if (EmpleadosBLL.Guardar(empleado))
             {
                 MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();

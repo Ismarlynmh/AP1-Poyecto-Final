@@ -13,5 +13,12 @@ namespace AP1PoyectoFinal.Entidades
         [Key]
         public int RolId { get; set; }
         public string Descripcion { get; set; }
+
+        public Roles()
+        {
+            RolId = 0;
+            Descripcion = string.Empty;
+
+        }
     }
 }

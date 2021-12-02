@@ -29,6 +29,7 @@ namespace AP1PoyectoFinal.UI.Registros
         {
             InitializeComponent();
             usuarios = new Usuarios();
+            Rol = new Roles();
             this.DataContext = usuarios;
             FechaIngresoDateTimePicker.SelectedDate = DateTime.Now;
             this.RolIdComboBox.ItemsSource = RolesBLL.GetList(x => true);
@@ -159,7 +160,7 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (UsuariosBLL.Eliminar(usuarios.UsuariosId))
+            if (UsuariosBLL.Eliminar(usuarios.UsuarioId))
             {
                 MessageBox.Show("Elimando", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();
@@ -172,7 +173,12 @@ namespace AP1PoyectoFinal.UI.Registros
        
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (UsuariosBLL.Guardar(usuarios))
+            if (!Validar())
+            {
+                return;
+            }
+            var ok = UsuariosBLL.Guardar(usuarios);
+            if (ok)
             {
                 MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();
@@ -190,7 +196,7 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            var registro = UsuariosBLL.Buscar(usuarios.UsuariosId);
+            var registro = UsuariosBLL.Buscar(usuarios.UsuarioId);
             if (registro != null)
             {
                 usuarios = registro;

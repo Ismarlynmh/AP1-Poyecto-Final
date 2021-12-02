@@ -13,21 +13,19 @@ namespace AP1PoyectoFinal
     /// </summary>
     public partial class MainWindow : Window
     {
-        Usuarios usuario = new Usuarios();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
         public static int usuarioSiempreActivoId;
+        Usuarios usuario = new Usuarios();
         public MainWindow(int UsuarioId)
         {
             InitializeComponent();
             usuarioSiempreActivoId = UsuarioId;
             usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
             UsuarioActivoTextBox.Text = ("Usuario activo: " + usuario.NombreUsuario.ToString() + "\nID Usuario activo: " + usuario.UsuarioId.ToString());
-
-    }
-        public MainWindow()
-        {
-            InitializeComponent();
         }
-
         private void UsuarioButton_Click(object sender, RoutedEventArgs e)
         {
             rUsuarios rUsuarios = new rUsuarios();
@@ -99,7 +97,7 @@ namespace AP1PoyectoFinal
 
         private void ConsultarVentasButton_Click(object sender, RoutedEventArgs e)
         {
-            cVentas cVentas = new cVentas(usuarioSiempreActivoId);
+            cVentas cVentas = new cVentas();
             cVentas.Show();
         }
 

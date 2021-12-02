@@ -24,8 +24,6 @@ namespace AP1PoyectoFinal.Entidades
         public DateTime FechaIngreso { get; set; }
         public string NombreUsuario { get; set; }
         public string Contrasena { get; set; }
-        public ICollection<Compras> Compras { get; set; }
-        public ICollection<Empleados> Empleados { get; set; }
         public Usuarios()
         {
             UsuarioId = 0;
@@ -45,6 +43,5 @@ namespace AP1PoyectoFinal.Entidades
 
         [ForeignKey("RolId")]
         public int RolId { get;  set; }
-        public int UsuariosId { get;  set; }
     }
 }

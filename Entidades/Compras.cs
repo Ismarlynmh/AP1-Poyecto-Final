@@ -22,9 +22,6 @@ namespace AP1PoyectoFinal.Entidades
         [ForeignKey("CompraId")]
         public List<ComprasDetalle> Detalle { get; set; }
 
-        [ForeignKey("Usuarios")]
-        public int UsuariosId { get; set; }
-
         public Compras()
         {
             CompraId = 0;
@@ -34,7 +31,6 @@ namespace AP1PoyectoFinal.Entidades
             ITBIS = 0;
             Descuento = 0;
             Total = 0;
-            UsuariosId = 0;
             this.Detalle = new List<ComprasDetalle>();
         }
     }

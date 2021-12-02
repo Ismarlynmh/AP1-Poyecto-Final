@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Prueba_Ismarlin_Proyecto.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20211130201018_Migracion")]
+    [Migration("20211202220935_Migracion")]
     partial class Migracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,12 +42,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UsuariosId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("CompraId");
-
-                    b.HasIndex("UsuariosId");
 
                     b.ToTable("Compras");
                 });
@@ -116,12 +111,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UsuariosUsuarioId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("EmpleadoId");
-
-                    b.HasIndex("UsuariosUsuarioId");
 
                     b.ToTable("Empleados");
                 });
@@ -269,9 +259,6 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.Property<string>("TipoUsuario")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UsuariosId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
@@ -286,14 +273,13 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                             Contrasena = "Admin",
                             Direccion = "SFM",
                             Email = "admin123@gmail.com",
-                            FechaIngreso = new DateTime(2021, 11, 30, 16, 10, 10, 724, DateTimeKind.Local).AddTicks(4817),
+                            FechaIngreso = new DateTime(2021, 12, 2, 18, 9, 29, 695, DateTimeKind.Local).AddTicks(7053),
                             NombreUsuario = "Admin",
                             Nombres = "Admin",
                             RolId = 0,
                             Sexo = "Femenino",
                             Telefono = "8888888888",
-                            TipoUsuario = "Administrador",
-                            UsuariosId = 0
+                            TipoUsuario = "Administrador"
                         });
                 });
 
@@ -348,15 +334,6 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     b.ToTable("VentasDetalle");
                 });
 
-            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Compras", b =>
-                {
-                    b.HasOne("AP1PoyectoFinal.Entidades.Usuarios", null)
-                        .WithMany("Compras")
-                        .HasForeignKey("UsuariosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("AP1PoyectoFinal.Entidades.ComprasDetalle", b =>
                 {
                     b.HasOne("AP1PoyectoFinal.Entidades.Compras", null)
@@ -364,13 +341,6 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                         .HasForeignKey("CompraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Empleados", b =>
-                {
-                    b.HasOne("AP1PoyectoFinal.Entidades.Usuarios", null)
-                        .WithMany("Empleados")
-                        .HasForeignKey("UsuariosUsuarioId");
                 });
 
             modelBuilder.Entity("AP1PoyectoFinal.Entidades.Productos", b =>
@@ -397,13 +367,6 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
             modelBuilder.Entity("AP1PoyectoFinal.Entidades.Suplidores", b =>
                 {
                     b.Navigation("Productos");
-                });
-
-            modelBuilder.Entity("AP1PoyectoFinal.Entidades.Usuarios", b =>
-                {
-                    b.Navigation("Compras");
-
-                    b.Navigation("Empleados");
                 });
 
             modelBuilder.Entity("AP1PoyectoFinal.Entidades.Ventas", b =>

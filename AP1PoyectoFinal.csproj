@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Data\MendozaCreation">
+    <None Update="Data\MendozaCreation.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

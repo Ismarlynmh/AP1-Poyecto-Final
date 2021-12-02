@@ -24,15 +24,6 @@ namespace AP1PoyectoFinal.UI.Consultas
     /// </summary>
     public partial class cCompras : Window
     {
-        public static int usuarioSiempreActivoId;
-        Usuarios usuario = new Usuarios();
-        public cCompras(int usuarioId)
-        {
-            InitializeComponent();
-            usuarioSiempreActivoId = usuarioId;
-            usuario = UsuariosBLL.Buscar(usuarioSiempreActivoId);
-
-        }
 
         public cCompras()
         {
@@ -65,12 +56,6 @@ namespace AP1PoyectoFinal.UI.Consultas
                         DateTime fecha = Convert.ToDateTime(CriterioTextBox.Text);
                         listado = ComprasBLL.GetList(x => x.FechaDeCompra.Date >= fecha.Date && x.FechaDeCompra.Date <= fecha.Date);
                         break;
-                    case 4:
-                        int idU;
-                        idU = int.Parse(CriterioTextBox.Text);
-                        listado = ComprasBLL.GetList(x => x.UsuariosId == idU);
-                        break;
-
                 }
             }
             else if (FiltrarComboBox.SelectedIndex == 3)

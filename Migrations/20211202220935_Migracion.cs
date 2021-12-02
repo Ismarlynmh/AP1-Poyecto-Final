@@ -8,6 +8,47 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Compras",
+                columns: table => new
+                {
+                    CompraId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    SuplidorId = table.Column<int>(type: "INTEGER", nullable: false),
+                    FechaDeCompra = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    SubTotal = table.Column<decimal>(type: "TEXT", nullable: false),
+                    ITBIS = table.Column<double>(type: "REAL", nullable: false),
+                    Descuento = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Total = table.Column<decimal>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Compras", x => x.CompraId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Empleados",
+                columns: table => new
+                {
+                    EmpleadoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombres = table.Column<string>(type: "TEXT", nullable: true),
+                    Apellidos = table.Column<string>(type: "TEXT", nullable: true),
+                    Cedula = table.Column<string>(type: "TEXT", nullable: true),
+                    Telefono = table.Column<string>(type: "TEXT", nullable: true),
+                    Celular = table.Column<string>(type: "TEXT", nullable: true),
+                    Direccion = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Cargo = table.Column<string>(type: "TEXT", nullable: true),
+                    Sueldo = table.Column<decimal>(type: "TEXT", nullable: false),
+                    FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    FechaIngreso = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Empleados", x => x.EmpleadoId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -60,8 +101,7 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                     FechaIngreso = table.Column<DateTime>(type: "TEXT", nullable: false),
                     NombreUsuario = table.Column<string>(type: "TEXT", nullable: true),
                     Contrasena = table.Column<string>(type: "TEXT", nullable: true),
-                    RolId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UsuariosId = table.Column<int>(type: "INTEGER", nullable: false)
+                    RolId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,6 +123,28 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ventas", x => x.VentaId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ComprasDetalle",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CompraId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Cantidad = table.Column<int>(type: "INTEGER", nullable: false),
+                    Precio = table.Column<decimal>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComprasDetalle", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ComprasDetalle_Compras_CompraId",
+                        column: x => x.CompraId,
+                        principalTable: "Compras",
+                        principalColumn: "CompraId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,61 +176,6 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Compras",
-                columns: table => new
-                {
-                    CompraId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    SuplidorId = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaDeCompra = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    SubTotal = table.Column<decimal>(type: "TEXT", nullable: false),
-                    ITBIS = table.Column<double>(type: "REAL", nullable: false),
-                    Descuento = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Total = table.Column<decimal>(type: "TEXT", nullable: false),
-                    UsuariosId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Compras", x => x.CompraId);
-                    table.ForeignKey(
-                        name: "FK_Compras_Usuarios_UsuariosId",
-                        column: x => x.UsuariosId,
-                        principalTable: "Usuarios",
-                        principalColumn: "UsuarioId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Empleados",
-                columns: table => new
-                {
-                    EmpleadoId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nombres = table.Column<string>(type: "TEXT", nullable: true),
-                    Apellidos = table.Column<string>(type: "TEXT", nullable: true),
-                    Cedula = table.Column<string>(type: "TEXT", nullable: true),
-                    Telefono = table.Column<string>(type: "TEXT", nullable: true),
-                    Celular = table.Column<string>(type: "TEXT", nullable: true),
-                    Direccion = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
-                    Cargo = table.Column<string>(type: "TEXT", nullable: true),
-                    Sueldo = table.Column<decimal>(type: "TEXT", nullable: false),
-                    FechaNacimiento = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FechaIngreso = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UsuariosUsuarioId = table.Column<int>(type: "INTEGER", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Empleados", x => x.EmpleadoId);
-                    table.ForeignKey(
-                        name: "FK_Empleados_Usuarios_UsuariosUsuarioId",
-                        column: x => x.UsuariosUsuarioId,
-                        principalTable: "Usuarios",
-                        principalColumn: "UsuarioId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "VentasDetalle",
                 columns: table => new
                 {
@@ -190,47 +197,15 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ComprasDetalle",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProductoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CompraId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Cantidad = table.Column<int>(type: "INTEGER", nullable: false),
-                    Precio = table.Column<decimal>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ComprasDetalle", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ComprasDetalle_Compras_CompraId",
-                        column: x => x.CompraId,
-                        principalTable: "Compras",
-                        principalColumn: "CompraId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Apellidos", "Cedula", "Celular", "Contrasena", "Direccion", "Email", "FechaIngreso", "NombreUsuario", "Nombres", "RolId", "Sexo", "Telefono", "TipoUsuario", "UsuariosId" },
-                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 11, 30, 16, 10, 10, 724, DateTimeKind.Local).AddTicks(4817), "Admin", "Admin", 0, "Femenino", "8888888888", "Administrador", 0 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Compras_UsuariosId",
-                table: "Compras",
-                column: "UsuariosId");
+                columns: new[] { "UsuarioId", "Apellidos", "Cedula", "Celular", "Contrasena", "Direccion", "Email", "FechaIngreso", "NombreUsuario", "Nombres", "RolId", "Sexo", "Telefono", "TipoUsuario" },
+                values: new object[] { 1, "Admin", "88888888888", "8888888888", "Admin", "SFM", "admin123@gmail.com", new DateTime(2021, 12, 2, 18, 9, 29, 695, DateTimeKind.Local).AddTicks(7053), "Admin", "Admin", 0, "Femenino", "8888888888", "Administrador" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ComprasDetalle_CompraId",
                 table: "ComprasDetalle",
                 column: "CompraId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Empleados_UsuariosUsuarioId",
-                table: "Empleados",
-                column: "UsuariosUsuarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_SuplidoresSuplidorId",
@@ -258,6 +233,9 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
                 name: "VentasDetalle");
 
             migrationBuilder.DropTable(
@@ -268,9 +246,6 @@ namespace Prueba_Ismarlin_Proyecto.Migrations
 
             migrationBuilder.DropTable(
                 name: "Ventas");
-
-            migrationBuilder.DropTable(
-                name: "Usuarios");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace AP1PoyectoFinal.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data source = Data/MendozaCreation");
+            optionsBuilder.UseSqlite(@"Data source = Data/MendozaCreation.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

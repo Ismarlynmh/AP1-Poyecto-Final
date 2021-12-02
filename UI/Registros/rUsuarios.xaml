@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <!---
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-            <Label Content="Usuarios Id" />
+            <Label Content="Usuario Id" />
             <Label Content="RolId" />
             <Label Content="Nombres" />
             <Label Content="Apellidos" />
@@ -52,7 +52,7 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5">
 
-            <TextBox   x:Name="UsuarioIdTextBox"  materialDesign:HintAssist.Hint="Usuarios Id " Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox   x:Name="UsuarioIdTextBox"  materialDesign:HintAssist.Hint="Usuario Id " Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             <ComboBox  materialDesign:HintAssist.Hint="RolId" x:Name="RolIdComboBox" Height="28" SelectedValue="{Binding RolId}" Width="287" Margin="0,3" SelectionChanged="RolIdComboBox_SelectionChanged"/>
             <TextBox x:Name="NombresTextBox" materialDesign:HintAssist.Hint="Nombre "/>
             <TextBox x:Name="ApellidosTextBox" materialDesign:HintAssist.Hint="Apellido"/>

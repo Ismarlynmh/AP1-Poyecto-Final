@@ -154,7 +154,12 @@ namespace AP1PoyectoFinal.UI.Registros
 
         private void GuardarBoton_Click(object sender, RoutedEventArgs e)
         {
-            if (VentasBLL.Guardar(venta))
+            if (!Validar())
+            {
+                return;
+            }
+            var ok = VentasBLL.Guardar(venta); ;
+            if (ok)
             {
                 MessageBox.Show("Guardado", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();
